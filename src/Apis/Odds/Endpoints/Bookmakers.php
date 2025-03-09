@@ -47,4 +47,12 @@ class Bookmakers extends OddsApiClient
     {
         return $this->call("bookmakers/fixtures/$fixtureId", $query);
     }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function eventsByFixture(int $fixtureId, $query = []): ApiResponse
+    {
+        return $this->call("bookmakers/fixtures/$fixtureId/mapping", $query);
+    }
 }

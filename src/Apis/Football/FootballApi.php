@@ -9,6 +9,7 @@ use Sportmonks\Apis\Football\Endpoints\Fixtures;
 use Sportmonks\Apis\Football\Endpoints\Leagues;
 use Sportmonks\Apis\Football\Endpoints\Livescores;
 use Sportmonks\Apis\Football\Endpoints\News;
+use Sportmonks\Apis\Football\Endpoints\Odds;
 use Sportmonks\Apis\Football\Endpoints\Players;
 use Sportmonks\Apis\Football\Endpoints\Predictions;
 use Sportmonks\Apis\Football\Endpoints\Referees;
@@ -62,6 +63,11 @@ class FootballApi
     public function news(): News
     {
         return new News();
+    }
+
+    public function odds(): Odds
+    {
+        return new Odds();
     }
 
     public function players(): Players
