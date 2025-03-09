@@ -8,17 +8,18 @@ class SportmonksServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $configPath = dirname(__DIR__) . '/config';
-
-        $this->mergeConfigFrom($configPath . '/sportmonks.php', 'sportmonks');
-
         $this->publishes([
-            $configPath . '/sportmonks.php' => config_path('sportmonks.php'),
-        ], 'config');
+            __DIR__ . '/../config/sportmonks.php' => config_path('sportmonks.php'),
+        ], 'sportmonks-config');
     }
 
     public function register(): void
     {
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/sportmonks.php',
+            'sportmonks'
+        );
+
         $this->app->singleton('sportmonks', function () {
             return new Sportmonks();
         });
