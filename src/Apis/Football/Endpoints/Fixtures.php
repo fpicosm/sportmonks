@@ -14,7 +14,7 @@ class Fixtures extends FootballApiClient
      */
     public function all($query = []): ApiResponse
     {
-        return $this->call('fixtures', $query);
+        return $this->call('fixtures', $query, []);
     }
 
     /**

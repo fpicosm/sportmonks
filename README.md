@@ -1,6 +1,8 @@
 ## Core Api
 
-### Cities
+### Endpoints
+
+#### Cities
 
 ```php
 // get all cities
@@ -17,7 +19,7 @@ Sportmonks::core()->cities()->find($cityId);
 Sportmonks::core()->cities()->search($name);
 ```
 
-### Continents
+#### Continents
 
 ```php
 // get all continents
@@ -29,7 +31,7 @@ Sportmonks::core()->continents()->all();
 Sportmonks::core()->continents()->find($continentId);
 ``` 
 
-### Countries
+#### Countries
 
 ```php
 // get all countries
@@ -46,7 +48,7 @@ Sportmonks::core()->countries()->find($countryId);
 Sportmonks::core()->countries()->search($name);
 ```
 
-### Regions
+#### Regions
 
 ```php
 // get all regions
@@ -63,14 +65,14 @@ Sportmonks::core()->regions()->find($regionId);
 Sportmonks::core()->regions()->search($name);
 ```
 
-### Timezones
+#### Timezones
 
 ```php
 // get all timezones
 Sportmonks::core()->timezones()->all();
 ```
 
-### Types
+#### Types
 
 ```php
 // get all types
@@ -89,7 +91,118 @@ Sportmonks::core()->types()->byEntity();
 
 ## Football Api
 
-### Coaches
+### Basic Usage
+
+#### The `setInclude` option
+
+This option allows you to enrich your responses by including related resources in the request. You can pass an array of
+strings of a semicolon separated string.
+
+```php
+Sportmonks::football()->fixtures()->setInclude('round', 'stage', 'group', 'lineups')->all();
+Sportmonks::football()->fixtures()->setInclude('round;stage;group;lineups')->all();
+```
+
+You can also get nested relations using dot notation:
+
+```php
+Sportmonks::football()->fixtures()->setInclude('lineups.player.nationality', 'round.stage')->all();
+```
+
+#### The `setSelect` option
+
+This allows you to reduce responses speed and size, filtering them by getting only the specified fields on the given
+entities, passing an array of strings or a comma separated string:
+
+```php
+Sportmonks::football()->leagues()->setSelect('name', 'short_code');
+Sportmonks::football()->leagues()->setSelect('name,short_code');
+```
+
+This request will produce the following response (note that fields with relations are always added, like `id`,
+`sport_id` or `country_id`):
+
+```json 
+{
+    "data": [
+        {
+            "name": "Premier League",
+            "short_code": "UK PL",
+            "id": 8,
+            "sport_id": 1,
+            "country_id": 462
+        }
+    ]
+}
+```
+
+In case you want to select specific fields within relations, you should use the `relation:field,other_field` notation:
+
+```php
+Sportmonks::football()
+    ->leagues()
+    ->setSelect('name', 'short_code')
+    ->setInclude('seasons:name,starting_at,ending_at')
+    ->all();
+```
+
+#### The `setFilters` option
+
+This allows you to filters the results. There are two types of filters (please, check
+out [documentation](https://docs.sportmonks.com/football/api/request-options/filtering) or the `Static filters` and
+`Dynamic filters` tabs in the request pages for more information).
+
+##### Static filters
+
+```php
+Sportmonks::football()
+    ->fixtures()
+    ->setFilters(['todayDate', 'idAfter' => 500])  
+    ->all(); 
+```
+
+##### Dynamic filters
+
+```php
+Sportmonks::football()
+    ->fixtures()
+    ->setSelect('name', 'state')
+    ->setFilters(['todayDate', 'fixtureStates' => [1, 2]])  
+    ->all(); 
+```
+
+#### The `sortBy` option
+
+This allows you to sort the results by the given field, and the given order:
+
+```php
+Sportmonks::football()->leagues()->sortBy('name'); // order is 'asc' by default
+Sportmonks::football()->leagues()->sortBy('name', 'desc')
+```
+
+#### The `setPage` option
+
+This allows you to get the given page and optionally the number of rows (50 by default), and ordering results by the
+given field (`id` by default):
+
+```php
+// gets the second page
+Sportmonks::football()->players()->setPage(2)->all();
+``` 
+
+```php
+// gets the second page, and returns 20 items
+Sportmonks::football()->players()->setPage(2, 20)->all(); 
+```
+
+```php
+// gets the second page, and returns 20 items, ordering results by the 'name' field
+Sportmonks::football()->players()->setPage(2, 20, 'name')->all(); 
+```
+
+### Endpoints
+
+#### Coaches
 
 ```php
 // get all coaches
@@ -116,7 +229,7 @@ Sportmonks::football()->coaches()->search($name);
 Sportmonks::football()->coaches()->latest();
 ```
 
-### Commentaries
+#### Commentaries
 
 ```php
 // get all commentaries
@@ -128,7 +241,7 @@ Sportmonks::football()->commentaries()->all();
 Sportmonks::football()->commentaries()->byFixture($fixtureId);
 ```
 
-### Expected (xG)
+#### Expected (xG)
 
 ```php
 // get expected by team
@@ -140,7 +253,7 @@ Sportmonks::football()->expected()->byTeam();
 Sportmonks::football()->expected()->byPlayer();
 ```
 
-### Fixtures
+#### Fixtures
 
 ```php
 // get all fixtures
@@ -202,7 +315,7 @@ Sportmonks::football()->fixtures()->pastByTvStation($tvStationId);
 Sportmonks::football()->fixtures()->latest();
 ```
 
-### Leagues
+#### Leagues
 
 ```php
 // get all leagues
@@ -244,7 +357,7 @@ Sportmonks::football()->leagues()->allByTeam($teamId);
 Sportmonks::football()->leagues()->currentByTeam($teamId);
 ```
 
-### Livescores
+#### Livescores
 
 ```php
 // get all livescores
@@ -261,7 +374,7 @@ Sportmonks::football()->livescores()->inplay();
 Sportmonks::football()->livescores()->latest();
 ```
 
-### News (pre-match)
+#### News
 
 ```php
 // get pre-match news
@@ -278,8 +391,6 @@ Sportmonks::football()->news()->preMatch()->bySeason($seasonId);
 Sportmonks::football()->news()->preMatch()->forUpcomingFixtures();
 ```
 
-### News (post-match)
-
 ```php
 // get post-match news
 Sportmonks::football()->news()->postMatch()->all();
@@ -290,7 +401,7 @@ Sportmonks::football()->news()->postMatch()->all();
 Sportmonks::football()->news()->postMatch()->bySeason($seasonId);
 ```
 
-### Odds pre-match (standard)
+#### Odds pre-match (standard)
 
 ```php
 // get all pre-match odds
@@ -317,7 +428,7 @@ Sportmonks::football()->odds()->preMatch()->byFixtureAndMarket($fixtureId, $mark
 Sportmonks::football()->odds()->preMatch()->latest();
 ```
 
-### Odds pre-match (premium)
+#### Odds pre-match (premium)
 
 ```php
 // get all premium pre-match odds
@@ -354,7 +465,7 @@ Sportmonks::football()->odds()->preMatch()->premium()->historical();
 Sportmonks::football()->odds()->preMatch()->premium()->historicalUpdatedBetweenTime($start, $end);
 ```
 
-### Odds inplay
+#### Odds inplay
 
 ```php
 // get all inplay odds
@@ -381,7 +492,7 @@ Sportmonks::football()->odds()->inplay()->byFixtureAndMarket($fixtureId, $market
 Sportmonks::football()->odds()->inplay()->latest();
 ```
 
-### Players
+#### Players
 
 ```php
 // get all players
@@ -408,7 +519,7 @@ Sportmonks::football()->players()->search($name);
 Sportmonks::football()->players()->latest();
 ```
 
-### Predictions
+#### Predictions
 
 ```php
 // get probabilities
@@ -435,7 +546,7 @@ Sportmonks::football()->predictions()->valueBets();
 Sportmonks::football()->predictions()->valueBetsByFixture($fixtureId);
 ```
 
-### Referees
+#### Referees
 
 ```php
 // get all referees
@@ -462,7 +573,7 @@ Sportmonks::football()->referees()->bySeason($seasonId);
 Sportmonks::football()->referees()->search($name);
 ```
 
-### Rivals
+#### Rivals
 
 ```php
 // get all rivals
@@ -474,7 +585,7 @@ Sportmonks::football()->rivals()->all();
 Sportmonks::football()->rivals()->byTeam($teamId);
 ```
 
-### Rounds
+#### Rounds
 
 ```php
 // get all rounds
@@ -496,7 +607,7 @@ Sportmonks::football()->rounds()->bySeason($seasonId);
 Sportmonks::football()->rounds()->search($name);
 ```
 
-### Schedules
+#### Schedules
 
 ```php
 // get schedules by season id
@@ -513,7 +624,7 @@ Sportmonks::football()->schedules()->byTeam($teamId);
 Sportmonks::football()->schedules()->bySeasonAndTeam($seasonId, $teamId);
 ```
 
-### Seasons
+#### Seasons
 
 ```php
 // get all seasons
@@ -535,7 +646,7 @@ Sportmonks::football()->seasons()->byTeam($teamId);
 Sportmonks::football()->seasons()->search($name);
 ```
 
-### Squads
+#### Squads
 
 ```php
 // get current team squad by team id
@@ -552,7 +663,7 @@ Sportmonks::football()->squads()->extendedByTeam($teamId);
 Sportmonks::football()->squads()->bySeasonAndTeam($seasonId, $teamId); 
 ```
 
-### Stages
+#### Stages
 
 ```php
 // get all stages
@@ -574,7 +685,7 @@ Sportmonks::football()->stages()->bySeason($seasonId);
 Sportmonks::football()->stages()->search($name);
 ```
 
-### Standings
+#### Standings
 
 ```php
 // get all standings
@@ -601,7 +712,7 @@ Sportmonks::football()->standings()->byRound($roundId);
 Sportmonks::football()->standings()->liveByLeague($leagueId);
 ```
 
-### States
+#### States
 
 ```php
 // get all states
@@ -613,7 +724,7 @@ Sportmonks::football()->states()->all();
 Sportmonks::football()->states()->find($stateId);
 ```
 
-### Statistics
+#### Statistics
 
 ```php
 // get statistics by stage id
@@ -645,7 +756,7 @@ Sportmonks::football()->statistics()->byCoach($coachId);
 Sportmonks::football()->statistics()->byReferee($refereeId);
 ```
 
-### Teams
+#### Teams
 
 ```php
 // get all teams
@@ -672,7 +783,7 @@ Sportmonks::football()->teams()->bySeason($seasonId);
 Sportmonks::football()->teams()->search($name);
 ```
 
-### TopScorers
+#### TopScorers
 
 ```php
 // get top-scorers by season id
@@ -684,7 +795,7 @@ Sportmonks::football()->topScorers()->bySeason($seasonId);
 Sportmonks::football()->topScorers()->byStage($stageId);
 ```
 
-### Transfers
+#### Transfers
 
 ```php
 // get all transfers
@@ -716,7 +827,7 @@ Sportmonks::football()->transfers()->byTeam($teamId);
 Sportmonks::football()->transfers()->byPlayer($playerId);
 ```
 
-### TvStations
+#### TvStations
 
 ```php
 // get all tv-stations
@@ -733,7 +844,7 @@ Sportmonks::football()->tvStations()->find($venueId);
 Sportmonks::football()->tvStations()->byFixture($fixtureId);
 ```
 
-### Venues
+#### Venues
 
 ```php
 // get all venues
@@ -757,7 +868,9 @@ Sportmonks::football()->venues()->search($name);
 
 ## Odds Api
 
-### Bookmakers
+### Endpoints
+
+#### Bookmakers
 
 ```php
 // get all bookmakers
@@ -789,7 +902,7 @@ Sportmonks::odds()->bookmakers()->byFixture($bookmakerId);
 Sportmonks::odds()->bookmakers()->eventsByFixture($fixtureId);
 ```
 
-### Markets
+#### Markets
 
 ```php
 // get all markets
@@ -812,6 +925,8 @@ Sportmonks::odds()->markets()->search($name);
 ```
 
 ## My Api
+
+### Endpoints
 
 ```php
 // get all filters by entity
@@ -840,7 +955,55 @@ Sportmonks::my()->usage();
 
 ## Cricket Api
 
-### Continents
+### Basic Usage
+
+#### The `setFields` option
+
+With this option, you can get only fields you are interested in, passing an array of strings, or a comma
+separated string.
+
+```php
+// returns only `id` and `name` fields
+Sportmonks::cricket()->continents()->setFields('id', 'name')->all();
+Sportmonks::cricket()->continents()->setFields('id,name')->all();
+```
+
+#### The `setFilters` option
+
+With this option, you can filter results by the given fields passing a key-value array:
+
+```php
+Sportmonks::cricket()->countries()->setFilters(['name' => 'Spain'])->all();
+Sportmonks::cricket()->countries()->setFilters([
+    'name' => 'Spain',
+    'continent_id' => 1,
+])->all();
+```
+
+#### The `setInclude` option
+
+With this option, you can enrich your requests including the given relations, passing an array of strings, or a
+comma separated string.
+
+```php
+Sportmonks::cricket()->leagues()->setInclude('seasons', 'country')->all();
+Sportmonks::cricket()->leagues()->setInclude('seasons,country')->all();
+```
+
+#### The `sortBy` option
+
+This option allows to sort the response results by the given values, passing an array of string, or a comma separated
+string.
+
+```php
+Sportmonks::cricket()->seasons()->sortBy('name')->all();
+Sportmonks::cricket()->seasons()->sortBy('league_id', 'name')->all();
+Sportmonks::cricket()->seasons()->sortBy('league_id,name')->all();
+```
+
+### Endpoints
+
+#### Continents
 
 ```php
 // get all continents
@@ -852,7 +1015,7 @@ Sportmonks::cricket()->continents()->all();
 Sportmonks::cricket()->continents()->find($continentId);
 ```
 
-### Countries
+#### Countries
 
 ```php
 // get all countries
@@ -864,7 +1027,7 @@ Sportmonks::cricket()->countries()->all();
 Sportmonks::cricket()->countries()->find($countryId);
 ```
 
-### Fixtures
+#### Fixtures
 
 ```php
 // get all fixtures
@@ -876,7 +1039,7 @@ Sportmonks::cricket()->fixtures()->all();
 Sportmonks::cricket()->fixtures()->find($fixtureId);
 ```
 
-### Leagues
+#### Leagues
 
 ```php
 // get all leagues
@@ -888,14 +1051,14 @@ Sportmonks::cricket()->leagues()->all();
 Sportmonks::cricket()->leagues()->find($leagueId);
 ```
 
-### Livescores
+#### Livescores
 
 ```php
 // get all livescores
 Sportmonks::cricket()->livescores()->all();
 ```
 
-### Officials
+#### Officials
 
 ```php
 // get all officials
@@ -907,7 +1070,7 @@ Sportmonks::cricket()->officials()->all();
 Sportmonks::cricket()->officials()->find($officialId);
 ```
 
-### Players
+#### Players
 
 ```php
 // get all players
@@ -919,7 +1082,7 @@ Sportmonks::cricket()->players()->all();
 Sportmonks::cricket()->players()->find($leagueId);
 ```
 
-### Positions
+#### Positions
 
 ```php
 // get all positions
@@ -931,7 +1094,7 @@ Sportmonks::cricket()->positions()->all();
 Sportmonks::cricket()->positions()->find($positionId);
 ```
 
-### Scores
+#### Scores
 
 ```php
 // get all scores
@@ -943,7 +1106,7 @@ Sportmonks::cricket()->scores()->all();
 Sportmonks::cricket()->scores()->find($scoreId);
 ```
 
-### Seasons
+#### Seasons
 
 ```php
 // get all seasons
@@ -955,14 +1118,14 @@ Sportmonks::cricket()->seasons()->all();
 Sportmonks::cricket()->seasons()->find($seasonId);
 ```
 
-### Squads
+#### Squads
 
 ```php
 // get squad by team and season id
 Sportmonks::cricket()->squads()->byTeamAndSeason($teamId, $seasonId);
 ```
 
-### Stages
+#### Stages
 
 ```php
 // get all stages
@@ -974,7 +1137,7 @@ Sportmonks::cricket()->stages()->all();
 Sportmonks::cricket()->stages()->find($stageId);
 ```
 
-### Standings
+#### Standings
 
 ```php
 // get standings by season id
@@ -986,14 +1149,14 @@ Sportmonks::cricket()->standings()->bySeason($seasonId);
 Sportmonks::cricket()->standings()->byStage($stageId);
 ```
 
-### TeamRankings
+#### TeamRankings
 
 ```php
 // get global team seasons
 Sportmonks::cricket()->teamRankings()->global();
 ```
 
-### Teams
+#### Teams
 
 ```php
 // get all teams
@@ -1005,7 +1168,7 @@ Sportmonks::cricket()->teams()->all();
 Sportmonks::cricket()->teams()->find($teamId);
 ```
 
-### Venues
+#### Venues
 
 ```php
 // get all venues
@@ -1018,3 +1181,103 @@ Sportmonks::cricket()->venues()->find($venueId);
 ```
 
 ## FormulaOne Api
+
+### Basic Usage
+
+TODO: filters, include, sort
+
+### Endpoints
+
+#### Drivers
+
+```php
+// get driver by id
+Sportmonks::f1()->drivers()->find($driverId);
+```
+
+```php
+// get drivers by season id
+Sportmonks::f1()->drivers()->bySeason($seasonId);
+```
+
+```php
+// get season race results
+Sportmonks::f1()->drivers()->seasonResults($driverId, $seasonId);
+```
+
+#### Livescores
+
+```php
+// get livescores
+Sportmonks::f1()->livescores()->all();
+```
+
+#### Seasons
+
+```php
+// get seasons
+Sportmonks::f1()->seasons()->all();
+```
+
+```php
+// get season by id
+Sportmonks::f1()->seasons()->find($seasonId);
+```
+
+#### Stages
+
+```php
+// get stages
+Sportmonks::f1()->stages()->all();
+```
+
+```php
+// get stage by id
+Sportmonks::f1()->stages()->find($stageId);
+```
+
+```php
+// get stage by season id
+Sportmonks::f1()->stages()->bySeason($seasonId);
+```
+
+#### Teams
+
+```php
+// get team by id
+Sportmonks::f1()->teams()->find($teamId);
+```
+
+```php
+// get teams by season id
+Sportmonks::f1()->teams()->bySeason($seasonId);
+```
+
+```php
+// get season race results
+Sportmonks::f1()->teams()->seasonResults($teamId, $seasonId);
+```
+
+#### Tracks
+
+```php
+// get all tracks
+Sportmonks::f1()->tracks()->all();
+```
+
+```php
+// get track by id
+Sportmonks::f1()->tracks()->find($trackId);
+```
+
+```php
+// get tracks by season id
+Sportmonks::f1()->tracks()->bySeason($seasonId);
+```
+
+#### Winners
+
+```php
+// get track winners by season id
+Sportmonks::f1()->winners()->bySeason();
+```

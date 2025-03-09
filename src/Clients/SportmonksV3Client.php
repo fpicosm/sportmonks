@@ -11,6 +11,7 @@ class SportmonksV3Client extends ApiClient
     protected array $select = [];
     protected int|null $page = null;
     protected int|null $pageSize = null;
+    protected string|null $pageOrder = null;
     protected string|null $sortBy = null;
     protected string|null $sortOrder = null;
 
@@ -26,10 +27,11 @@ class SportmonksV3Client extends ApiClient
         return $this;
     }
 
-    public function setPage(int $pageNumber, int $pageSize = null): self
+    public function setPage(int $pageNumber, int $pageSize = null, string $order = 'id'): self
     {
         $this->page = $pageNumber;
         $this->pageSize = $pageSize;
+        $this->pageOrder = $order;
 
         return $this;
     }
@@ -55,7 +57,7 @@ class SportmonksV3Client extends ApiClient
 
             return collect($filters)
                 ->map(fn(mixed $value) => is_array($value) ? join(',', $value) : str($value)->value())
-                ->map(fn(string $value, string $key) => "$key:$value")
+                ->map(fn(string $value, string|int $key) => is_numeric($key) ? $value : "$key:$value")
                 ->toArray();
         })();
 
@@ -75,6 +77,7 @@ class SportmonksV3Client extends ApiClient
         if (!empty($this->page)) {
             $query['page'] = $this->page;
             $query['per_page'] = $this->pageSize ?? config('sportmonks.per_page');
+            $query['order'] = $this->pageOrder;
         }
 
         if (!empty($this->select)) {

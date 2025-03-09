@@ -56,12 +56,12 @@ abstract class ApiClient
 
     abstract protected function getParams(array $query): array;
 
-    public function formatDate(string|Carbon $date, $format = 'Y-m-d'): string
+    protected function formatDate(string|Carbon $date, $format = 'Y-m-d'): string
     {
         return Carbon::make($date)->format($format);
     }
 
-    public function timestamp(int|Carbon $date): string
+    protected function timestamp(int|Carbon $date): string
     {
         return Carbon::make($date)->timestamp;
     }
