@@ -1,7 +1,7 @@
 {
     "name": "fpicosm/sportmonks",
     "description": "Laravel wrapper for using all Sportmonks APIs in a single project",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
