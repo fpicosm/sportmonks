@@ -1,0 +1,36 @@
+{
+  "name": "fpicosm/sportmonks",
+  "description": "Laravel wrapper for using all Sportmonks APIs in a single project",
+  "type": "project",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Fernando Picos",
+      "email": "fpicosm@gmail.com",
+      "homepage": "https://github.com/fpicosm",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12.0",
+    "laravel/laravel": "^12.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sportmonks\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "tests/"
+    ]
+  },
+  "scripts": {
+    "test:unit": "./vendor/bin/phpunit"
+  }
+}
