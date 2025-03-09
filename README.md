@@ -32,14 +32,26 @@ This option allows you to enrich your responses by including related resources i
 strings of a semicolon separated string.
 
 ```php
-Sportmonks::football()->fixtures()->setInclude('round', 'stage', 'group', 'lineups')->all();
-Sportmonks::football()->fixtures()->setInclude('round;stage;group;lineups')->all();
+Sportmonks::football()
+    ->fixtures()
+    ->setInclude('round', 'stage', 'group', 'lineups')
+    ->all();
+```
+
+```php
+Sportmonks::football()
+    ->fixtures()
+    ->setInclude('round;stage;group;lineups')
+    ->all();
 ```
 
 You can also get nested relations using dot notation:
 
 ```php
-Sportmonks::football()->fixtures()->setInclude('lineups.player.nationality', 'round.stage')->all();
+Sportmonks::football()
+    ->fixtures()
+    ->setInclude('lineups.player.nationality', 'round.stage')
+    ->all();
 ```
 
 #### The `setSelect` option
@@ -48,12 +60,21 @@ This allows you to reduce responses speed and size, filtering them by getting on
 entities, passing an array of strings or a comma separated string:
 
 ```php
-Sportmonks::football()->leagues()->setSelect('name', 'short_code');
-Sportmonks::football()->leagues()->setSelect('name,short_code');
+Sportmonks::football()
+    ->leagues()
+    ->setSelect('name', 'short_code')
+    ->all();
 ```
 
-This request will produce the following response (note that fields with relations are always added, like `id`,
-`sport_id` or `country_id`):
+```php
+Sportmonks::football()
+    ->leagues()
+    ->setSelect('name,short_code')
+    ->all();
+```
+
+This request will produce the following response. Note that fields with relations are always added, like `id`,
+`sport_id`, `country_id`...
 
 ```json 
 {
@@ -109,8 +130,8 @@ Sportmonks::football()
 This allows you to sort the results by the given field, and the given order:
 
 ```php
-Sportmonks::football()->leagues()->sortBy('name'); // order is 'asc' by default
-Sportmonks::football()->leagues()->sortBy('name', 'desc')
+Sportmonks::football()->leagues()->sortBy('name')->all(); // order is 'asc' by default
+Sportmonks::football()->leagues()->sortBy('name', 'desc')->all();
 ```
 
 #### The `setPage` option
