@@ -1,95 +1,28 @@
-## Core Api
+# Sportmonks
 
-### Endpoints
+## Installation
 
-#### Cities
+1. Require the package via Composer:
 
-```php
-// get all cities
-Sportmonks::core()->cities()->all();
+```shell
+composer require fpicosm/sportmonks
 ```
 
+2. Update your `.env` file adding the Sportmonks variables:
+
 ```php
-// get city by id
-Sportmonks::core()->cities()->find($cityId);
+SPORTMONKS_TOKEN=# YOUR_API_TOKEN
+SPORTMONKS_TIMEZONE=# Optional. UTC by default
+SPORTMONKS_PER_PAGE=# Optional. 50 by default
 ```
 
-```php
-// search cities by name
-Sportmonks::core()->cities()->search($name);
+3. Publish the config file:
+
+```shell
+php artisan vendor:publish --provider="Sportmonks\SportmonksServiceProvider"
 ```
 
-#### Continents
-
-```php
-// get all continents
-Sportmonks::core()->continents()->all();
-```
-
-```php
-// get continent by id
-Sportmonks::core()->continents()->find($continentId);
-``` 
-
-#### Countries
-
-```php
-// get all countries
-Sportmonks::core()->countries()->all();
-```
-
-```php
-// get country by id
-Sportmonks::core()->countries()->find($countryId);
-```
-
-```php
-// search countries by name
-Sportmonks::core()->countries()->search($name);
-```
-
-#### Regions
-
-```php
-// get all regions
-Sportmonks::core()->regions()->all();
-```
-
-```php
-// get region by id
-Sportmonks::core()->regions()->find($regionId);
-```
-
-```php
-// search regions by name
-Sportmonks::core()->regions()->search($name);
-```
-
-#### Timezones
-
-```php
-// get all timezones
-Sportmonks::core()->timezones()->all();
-```
-
-#### Types
-
-```php
-// get all types
-Sportmonks::core()->types()->all();
-```
-
-```php
-// get type by id
-Sportmonks::core()->types()->find($typeId);
-```
-
-```php
-// get types by entity
-Sportmonks::core()->types()->byEntity();
-```
-
-## Football Api
+## APIs 3.0
 
 ### Basic Usage
 
@@ -200,7 +133,96 @@ Sportmonks::football()->players()->setPage(2, 20)->all();
 Sportmonks::football()->players()->setPage(2, 20, 'name')->all(); 
 ```
 
-### Endpoints
+### Core Api
+
+#### Cities
+
+```php
+// get all cities
+Sportmonks::core()->cities()->all();
+```
+
+```php
+// get city by id
+Sportmonks::core()->cities()->find($cityId);
+```
+
+```php
+// search cities by name
+Sportmonks::core()->cities()->search($name);
+```
+
+#### Continents
+
+```php
+// get all continents
+Sportmonks::core()->continents()->all();
+```
+
+```php
+// get continent by id
+Sportmonks::core()->continents()->find($continentId);
+``` 
+
+#### Countries
+
+```php
+// get all countries
+Sportmonks::core()->countries()->all();
+```
+
+```php
+// get country by id
+Sportmonks::core()->countries()->find($countryId);
+```
+
+```php
+// search countries by name
+Sportmonks::core()->countries()->search($name);
+```
+
+#### Regions
+
+```php
+// get all regions
+Sportmonks::core()->regions()->all();
+```
+
+```php
+// get region by id
+Sportmonks::core()->regions()->find($regionId);
+```
+
+```php
+// search regions by name
+Sportmonks::core()->regions()->search($name);
+```
+
+#### Timezones
+
+```php
+// get all timezones
+Sportmonks::core()->timezones()->all();
+```
+
+#### Types
+
+```php
+// get all types
+Sportmonks::core()->types()->all();
+```
+
+```php
+// get type by id
+Sportmonks::core()->types()->find($typeId);
+```
+
+```php
+// get types by entity
+Sportmonks::core()->types()->byEntity();
+```
+
+### Football Api
 
 #### Coaches
 
@@ -866,9 +888,7 @@ Sportmonks::football()->venues()->bySeason($seasonId);
 Sportmonks::football()->venues()->search($name);
 ```
 
-## Odds Api
-
-### Endpoints
+### Odds Api
 
 #### Bookmakers
 
@@ -924,9 +944,7 @@ Sportmonks::odds()->markets()->find($marketId);
 Sportmonks::odds()->markets()->search($name);
 ```
 
-## My Api
-
-### Endpoints
+### My Api
 
 ```php
 // get all filters by entity
