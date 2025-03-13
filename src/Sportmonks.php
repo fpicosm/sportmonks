@@ -4,6 +4,7 @@ namespace Sportmonks;
 
 use Sportmonks\Apis\Core\CoreApi;
 use Sportmonks\Apis\Football\FootballApi;
+use Sportmonks\Apis\My\MyApi;
 
 class Sportmonks
 {
@@ -15,5 +16,10 @@ class Sportmonks
     public static function football(): FootballApi
     {
         return new FootballApi();
+    }
+
+    public static function my(): MyApi
+    {
+        return new MyApi();
     }
 }
