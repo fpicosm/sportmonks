@@ -47,7 +47,7 @@ class Leagues extends FootballClient
      */
     public function byFixtureDate(string|Carbon $date, array $query = []): object
     {
-        return $this->call("leagues/date/$date", $query);
+        return $this->call("leagues/date/$date", $query, []);
     }
 
     /**
@@ -58,7 +58,7 @@ class Leagues extends FootballClient
      */
     public function byCountry(int $countryId, array $query = []): object
     {
-        return $this->call("leagues/countries/$countryId", $query);
+        return $this->call("leagues/countries/$countryId", $query, []);
     }
 
     /**
@@ -69,7 +69,7 @@ class Leagues extends FootballClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->call("leagues/search/$search", $query);
+        return $this->call("leagues/search/$search", $query, []);
     }
 
     /**
@@ -80,7 +80,7 @@ class Leagues extends FootballClient
      */
     public function allByTeam(int $teamId, array $query = []): object
     {
-        return $this->call("leagues/teams/$teamId", $query);
+        return $this->call("leagues/teams/$teamId", $query, []);
     }
 
     /**
@@ -91,6 +91,6 @@ class Leagues extends FootballClient
      */
     public function currentByTeam(int $teamId, array $query = []): object
     {
-        return $this->call("leagues/teams/$teamId/current", $query);
+        return $this->call("leagues/teams/$teamId/current", $query, []);
     }
 }
