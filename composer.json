@@ -1,38 +1,43 @@
 {
-  "name": "fpicosm/sportmonks",
-  "description": "Laravel wrapper for using all Sportmonks APIs within a single library",
-  "type": "library",
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "license": "MIT",
-  "require": {
-    "php": "^8.3"
-  },
-  "require-dev": {
-    "laravel/laravel": "^12.0",
-    "phpunit/phpunit": "^12.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Sportmonks\\": "src/"
+    "name": "fpicosm/sportmonks",
+    "description": "Laravel wrapper for using all Sportmonks APIs within a single library",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "MIT",
+    "require": {
+        "php": "^8.3"
+    },
+    "require-dev": {
+        "laravel/laravel": "^12.0",
+        "phpunit/phpunit": "^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sportmonks\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Fernando Picos",
+            "email": "fpicosm@gmail.com",
+            "role": "developer",
+            "homepage": "https://github.com/fpicosm"
+        }
+    ],
+    "scripts": {
+        "test:unit": "./vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sportmonks\\SportmonksServiceProvider"
+            ]
+        }
     }
-  },
-  "authors": [
-    {
-      "name": "Fernando Picos",
-      "email": "fpicosm@gmail.com",
-      "role": "developer",
-      "homepage": "https://github.com/fpicosm"
-    }
-  ],
-  "scripts": {
-    "test:unit": "./vendor/bin/phpunit"
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Sportmonks\\SportmonksServiceProvider"
-      ]
-    }
-  }
 }
