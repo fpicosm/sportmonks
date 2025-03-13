@@ -5,8 +5,18 @@ namespace Sportmonks\Apis\Football\Endpoints;
 use GuzzleHttp\Exception\GuzzleException;
 use Sportmonks\Apis\Football\FootballClient;
 
-class TopScorers extends FootballClient
+class NewsPreMatch extends FootballClient
 {
+    /**
+     * @param array $query
+     * @return object
+     * @throws GuzzleException
+     */
+    public function all(array $query = []): object
+    {
+        return $this->call('news/pre-match', $query, []);
+    }
+
     /**
      * @param int $seasonId
      * @param array $query
@@ -15,17 +25,16 @@ class TopScorers extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->call("topscorers/seasons/$seasonId", $query, []);
+        return $this->call("news/pre-match/seasons/$seasonId", $query, []);
     }
 
     /**
-     * @param int $stageId
      * @param array $query
      * @return object
      * @throws GuzzleException
      */
-    public function byStage(int $stageId, array $query = []): object
+    public function upcoming(array $query = []): object
     {
-        return $this->call("topscorers/stages/$stageId", $query, []);
+        return $this->call('news/pre-match/upcoming', $query, []);
     }
 }

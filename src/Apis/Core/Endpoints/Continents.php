@@ -8,10 +8,23 @@ use Sportmonks\Apis\Core\CoreClient;
 class Continents extends CoreClient
 {
     /**
+     * @param array $query
+     * @return object
      * @throws GuzzleException
      */
-    public function all($query = []): object
+    public function all(array $query = []): object
     {
-        return $this->call('continents', [], $query);
+        return $this->call('continents', $query, []);
+    }
+
+    /**
+     * @param int $continentId
+     * @param array $query
+     * @return object
+     * @throws GuzzleException
+     */
+    public function find(int $continentId, array $query = []): object
+    {
+        return $this->call("continents/$continentId", $query);
     }
 }

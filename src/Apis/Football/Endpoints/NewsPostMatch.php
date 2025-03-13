@@ -5,7 +5,7 @@ namespace Sportmonks\Apis\Football\Endpoints;
 use GuzzleHttp\Exception\GuzzleException;
 use Sportmonks\Apis\Football\FootballClient;
 
-class States extends FootballClient
+class NewsPostMatch extends FootballClient
 {
     /**
      * @param array $query
@@ -14,17 +14,17 @@ class States extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('states', $query, []);
+        return $this->call('news/post-match', $query, []);
     }
 
     /**
-     * @param int $stateId
+     * @param int $seasonId
      * @param array $query
      * @return object
      * @throws GuzzleException
      */
-    public function find(int $stateId, array $query = []): object
+    public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->call("states/$stateId", $query);
+        return $this->call("news/post-match/seasons/$seasonId", $query, []);
     }
 }

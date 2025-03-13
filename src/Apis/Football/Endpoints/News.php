@@ -2,9 +2,15 @@
 
 namespace Sportmonks\Apis\Football\Endpoints;
 
-use Sportmonks\Apis\Football\FootballClient;
-
-class News extends FootballClient
+class News
 {
+    public function preMatch(): NewsPreMatch
+    {
+        return new NewsPreMatch();
+    }
 
+    public function postMatch(): NewsPostMatch
+    {
+        return new NewsPostMatch();
+    }
 }

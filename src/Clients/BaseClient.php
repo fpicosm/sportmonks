@@ -3,6 +3,7 @@
 namespace Sportmonks\Clients;
 
 
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\TransferStats;
@@ -29,7 +30,7 @@ abstract class BaseClient
     /**
      * @throws GuzzleException
      */
-    public function call(string $url, mixed $defaultValue = null, $params = []): object
+    public function call(string $url, $params = [], array|null $defaultValue = null): object
     {
         $response = $this->client->get($url, [
             ...$this->getParams($params),
@@ -47,4 +48,9 @@ abstract class BaseClient
     }
 
     abstract protected function getParams(array $query): array;
+
+    protected function formatDate(string|Carbon $date, $format = 'Y-m-d'): string
+    {
+        return Carbon::make($date)->format($format);
+    }
 }
