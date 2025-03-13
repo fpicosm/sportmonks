@@ -141,7 +141,7 @@ class Fixtures extends FootballClient
      * @return object
      * @throws GuzzleException
      */
-    public function latest(array $query = []): object
+    public function lastUpdated(array $query = []): object
     {
         return $this->call('fixtures/latest', $query, []);
     }

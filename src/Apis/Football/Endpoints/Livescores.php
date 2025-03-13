@@ -32,7 +32,7 @@ class Livescores extends FootballClient
      * @return object
      * @throws GuzzleException
      */
-    public function latest(array $query = []): object
+    public function lastUpdated(array $query = []): object
     {
         return $this->call('livescores/latest', $query, []);
     }
