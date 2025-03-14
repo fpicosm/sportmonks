@@ -39,11 +39,19 @@ abstract class BaseClient
             },
         ]);
 
-        $response = json_decode($response->getBody()->getContents());
+        $result = (function () use ($response, $defaultValue) {
+            $response = json_decode($response->getBody()->getContents());
+
+            return [
+                ...(array)$response,
+                'data' => empty($response->data) ? $defaultValue : $response->data,
+            ];
+        })();
 
         return (object)[
-            ...(array)$response,
-            'data' => empty($response->data) ? $defaultValue : $response->data,
+            ...$result,
+            'url' => $url,
+            'statusCode' => $response->getStatusCode(),
         ];
     }
 

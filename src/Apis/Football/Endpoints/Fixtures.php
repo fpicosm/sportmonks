@@ -56,28 +56,28 @@ class Fixtures extends FootballClient
     }
 
     /**
-     * @param string|Carbon $start
-     * @param string|Carbon $end
+     * @param string|Carbon $from
+     * @param string|Carbon $to
      * @param array $query
      * @return object
      * @throws GuzzleException
      */
-    public function byDateRange(string|Carbon $start, string|Carbon $end, array $query = []): object
+    public function byDateRange(string|Carbon $from, string|Carbon $to, array $query = []): object
     {
-        return $this->call("fixtures/between/{$this->formatDate($start)}/{$this->formatDate($end)}", $query, []);
+        return $this->call("fixtures/between/{$this->formatDate($from)}/{$this->formatDate($to)}", $query, []);
     }
 
     /**
-     * @param string|Carbon $start
-     * @param string|Carbon $end
+     * @param string|Carbon $from
+     * @param string|Carbon $to
      * @param int $teamId
      * @param array $query
      * @return object
      * @throws GuzzleException
      */
-    public function byDateRangeForTeam(string|Carbon $start, string|Carbon $end, int $teamId, array $query = []): object
+    public function byDateRangeForTeam(string|Carbon $from, string|Carbon $to, int $teamId, array $query = []): object
     {
-        return $this->call("fixtures/between/{$this->formatDate($start)}/{$this->formatDate($end)}/$teamId", $query, []);
+        return $this->call("fixtures/between/{$this->formatDate($from)}/{$this->formatDate($to)}/$teamId", $query, []);
     }
 
     /**

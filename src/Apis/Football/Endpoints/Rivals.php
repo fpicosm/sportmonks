@@ -25,6 +25,6 @@ class Rivals extends FootballClient
      */
     public function byTeam(int $teamId, array $query = []): object
     {
-        return $this->call("teams/rivals/$teamId", $query, []);
+        return $this->call("rivals/teams/$teamId", $query, []);
     }
 }

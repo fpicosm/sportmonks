@@ -40,12 +40,12 @@ class Rounds extends FootballClient
     }
 
     /**
-     * @param string $search
+     * @param string|int $search
      * @param array $query
      * @return object
      * @throws GuzzleException
      */
-    public function search(string $search, array $query = []): object
+    public function search(string|int $search, array $query = []): object
     {
         return $this->call("rounds/search/$search", $query, []);
     }

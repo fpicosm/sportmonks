@@ -47,7 +47,7 @@ class Leagues extends FootballClient
      */
     public function byFixtureDate(string|Carbon $date, array $query = []): object
     {
-        return $this->call("leagues/date/$date", $query, []);
+        return $this->call("leagues/date/{$this->formatDate($date)}", $query, []);
     }
 
     /**

@@ -23,7 +23,7 @@ class Commentaries extends FootballClient
      * @return object
      * @throws GuzzleException
      */
-    public function byTeam(int $fixtureId, array $query = []): object
+    public function byFixture(int $fixtureId, array $query = []): object
     {
         return $this->call("commentaries/fixtures/$fixtureId", $query, []);
     }

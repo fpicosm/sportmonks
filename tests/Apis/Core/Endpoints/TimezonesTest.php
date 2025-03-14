@@ -2,12 +2,23 @@
 
 namespace Apis\Core\Endpoints;
 
-use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Exception\GuzzleException;
+use PHPUnit\Framework\Attributes\Test;
+use Sportmonks\Sportmonks;
+use TestCase;
 
 class TimezonesTest extends TestCase
 {
-    public function get_all_timezones_test(): void
+    /**
+     * @throws GuzzleException
+     */
+    #[Test] public function get_all_timezones_test(): void
     {
-
+        $response = Sportmonks::core()->timezones()->all();
+        $this->assertEquals('/v3/core/timezones', $response->url->getPath());
+        $this->assertIsArray($response->data);
+        $this->assertNotEmpty($response->data);
+        $this->assertContainsOnlyString($response->data);
+        $this->assertObjectNotHasProperty('pagination', $response);
     }
 }

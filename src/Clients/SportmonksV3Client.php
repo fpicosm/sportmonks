@@ -26,8 +26,12 @@ class SportmonksV3Client extends BaseClient
         return $this;
     }
 
-    public function getPage(int $pageNumber, int $pageSize = null, string $orderBy = 'id'): self
+    public function getPage(int $pageNumber, int $pageSize = null, string $orderBy = 'asc'): self
     {
+        if (!in_array($orderBy, ['asc', 'desc'])) {
+            throw new InvalidArgumentException("orderBy should be 'asc' or 'desc'.");
+        }
+
         $this->page = $pageNumber;
         $this->pageSize = $pageSize;
         $this->sortOrder = $orderBy;
