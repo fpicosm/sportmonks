@@ -14,7 +14,7 @@ class ValueBets extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('predictions/value-bets', $query, []);
+        return $this->callArray('predictions/value-bets', $query);
     }
 
     /**
@@ -25,6 +25,6 @@ class ValueBets extends FootballClient
      */
     public function byFixture(int $fixtureId, array $query = []): object
     {
-        return $this->call("predictions/value-bets/fixtures/$fixtureId", $query, []);
+        return $this->callArray("predictions/value-bets/fixtures/$fixtureId", $query);
     }
 }

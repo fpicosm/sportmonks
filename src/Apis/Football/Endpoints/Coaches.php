@@ -14,7 +14,7 @@ class Coaches extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('coaches', $query, []);
+        return $this->callArray('coaches', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Coaches extends FootballClient
      */
     public function find(int $coachId, array $query = []): object
     {
-        return $this->call("coaches/$coachId", $query);
+        return $this->callObject("coaches/$coachId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Coaches extends FootballClient
      */
     public function byCountry(int $countryId, array $query = []): object
     {
-        return $this->call("coaches/countries/$countryId", $query, []);
+        return $this->callArray("coaches/countries/$countryId", $query);
     }
 
     /**
@@ -47,7 +47,7 @@ class Coaches extends FootballClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->call("coaches/search/$search", $query, []);
+        return $this->callArray("coaches/search/$search", $query);
     }
 
     /**
@@ -57,6 +57,6 @@ class Coaches extends FootballClient
      */
     public function lastUpdated(array $query = []): object
     {
-        return $this->call('coaches/latest', $query, []);
+        return $this->callArray('coaches/latest', $query);
     }
 }

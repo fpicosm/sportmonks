@@ -14,7 +14,7 @@ class Continents extends CoreClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('continents', $query, []);
+        return $this->callArray('continents', $query);
     }
 
     /**
@@ -25,6 +25,6 @@ class Continents extends CoreClient
      */
     public function find(int $continentId, array $query = []): object
     {
-        return $this->call("continents/$continentId", $query);
+        return $this->callObject("continents/$continentId", $query);
     }
 }

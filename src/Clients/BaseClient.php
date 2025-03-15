@@ -28,9 +28,20 @@ abstract class BaseClient
     }
 
     /**
+     * @param string $url
+     * @param array $params
+     * @return object
      * @throws GuzzleException
      */
-    public function call(string $url, $params = [], array|null $defaultValue = null): object
+    public function callArray(string $url, array $params = []): object
+    {
+        return $this->call($url, [], $params);
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    private function call(string $url, array|null $defaultValue, array $params = []): object
     {
         $response = $this->client->get($url, [
             ...$this->getParams($params),
@@ -56,6 +67,17 @@ abstract class BaseClient
     }
 
     abstract protected function getParams(array $query): array;
+
+    /**
+     * @param string $url
+     * @param array $params
+     * @return object
+     * @throws GuzzleException
+     */
+    public function callObject(string $url, array $params = []): object
+    {
+        return $this->call($url, null, $params);
+    }
 
     protected function formatDate(string|Carbon $date, $format = 'Y-m-d'): string
     {

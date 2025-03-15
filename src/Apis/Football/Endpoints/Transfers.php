@@ -15,7 +15,7 @@ class Transfers extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('transfers', $query, []);
+        return $this->callArray('transfers', $query);
     }
 
     /**
@@ -26,7 +26,7 @@ class Transfers extends FootballClient
      */
     public function find(int $transferId, array $query = []): object
     {
-        return $this->call("transfers/$transferId", $query);
+        return $this->callObject("transfers/$transferId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Transfers extends FootballClient
      */
     public function latest(array $query = []): object
     {
-        return $this->call('transfers/latest', $query, []);
+        return $this->callArray('transfers/latest', $query);
     }
 
     /**
@@ -48,7 +48,7 @@ class Transfers extends FootballClient
      */
     public function byDateRange(string|Carbon $from, string|Carbon $to, array $query = []): object
     {
-        return $this->call("transfers/between/{$this->formatDate($from)}/{$this->formatDate($to)}", $query, []);
+        return $this->callArray("transfers/between/{$this->formatDate($from)}/{$this->formatDate($to)}", $query);
     }
 
     /**
@@ -59,7 +59,7 @@ class Transfers extends FootballClient
      */
     public function byTeam(int $teamId, array $query = []): object
     {
-        return $this->call("transfers/teams/$teamId", $query, []);
+        return $this->callArray("transfers/teams/$teamId", $query);
     }
 
     /**
@@ -70,6 +70,6 @@ class Transfers extends FootballClient
      */
     public function byPlayer(int $playerId, array $query = []): object
     {
-        return $this->call("transfers/players/$playerId", $query, []);
+        return $this->callArray("transfers/players/$playerId", $query);
     }
 }

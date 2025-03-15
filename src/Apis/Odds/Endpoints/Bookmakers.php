@@ -14,7 +14,7 @@ class Bookmakers extends OddsClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('bookmakers', $query, []);
+        return $this->callArray('bookmakers', $query);
     }
 
     /**
@@ -24,7 +24,7 @@ class Bookmakers extends OddsClient
      */
     public function premium(array $query = []): object
     {
-        return $this->call('bookmakers/premium', $query, []);
+        return $this->callArray('bookmakers/premium', $query);
     }
 
     /**
@@ -35,7 +35,7 @@ class Bookmakers extends OddsClient
      */
     public function find(int $bookmakerId, array $query = []): object
     {
-        return $this->call("bookmakers/$bookmakerId", $query, []);
+        return $this->callArray("bookmakers/$bookmakerId", $query);
     }
 
     /**
@@ -46,7 +46,7 @@ class Bookmakers extends OddsClient
      */
     public function search(string $name, array $query = []): object
     {
-        return $this->call("bookmakers/search/$name", $query, []);
+        return $this->callArray("bookmakers/search/$name", $query);
     }
 
     /**
@@ -57,7 +57,7 @@ class Bookmakers extends OddsClient
      */
     public function byFixture(int $fixtureId, array $query = []): object
     {
-        return $this->call("bookmakers/fixtures/$fixtureId", $query, []);
+        return $this->callArray("bookmakers/fixtures/$fixtureId", $query);
     }
 
     /**
@@ -68,6 +68,6 @@ class Bookmakers extends OddsClient
      */
     public function eventsByFixture(int $fixtureId, array $query = []): object
     {
-        return $this->call("bookmakers/fixtures/$fixtureId/mapping", $query, []);
+        return $this->callArray("bookmakers/fixtures/$fixtureId/mapping", $query);
     }
 }

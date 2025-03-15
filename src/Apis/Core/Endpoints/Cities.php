@@ -14,7 +14,7 @@ class Cities extends CoreClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('cities', $query, []);
+        return $this->callArray('cities', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Cities extends CoreClient
      */
     public function find(int $cityId, array $query = []): object
     {
-        return $this->call("cities/$cityId", $query);
+        return $this->callObject("cities/$cityId", $query);
     }
 
     /**
@@ -36,6 +36,6 @@ class Cities extends CoreClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->call("cities/search/$search", $query, []);
+        return $this->callArray("cities/search/$search", $query);
     }
 }

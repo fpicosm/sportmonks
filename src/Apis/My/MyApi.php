@@ -19,7 +19,7 @@ class MyApi extends SportmonksV3Client
      */
     public function enrichments(array $query = []): object
     {
-        return $this->call('enrichments', $query, []);
+        return $this->callArray('enrichments', $query);
     }
 
     /**
@@ -29,7 +29,7 @@ class MyApi extends SportmonksV3Client
      */
     public function resources(array $query = []): object
     {
-        return $this->call('resources', $query, []);
+        return $this->callArray('resources', $query);
     }
 
     /**
@@ -39,7 +39,7 @@ class MyApi extends SportmonksV3Client
      */
     public function leagues(array $query = []): object
     {
-        return $this->call('leagues', $query, []);
+        return $this->callArray('leagues', $query);
     }
 
     /**
@@ -49,7 +49,7 @@ class MyApi extends SportmonksV3Client
      */
     public function usage(array $query = []): object
     {
-        return $this->call('usage', $query, []);
+        return $this->callArray('usage', $query);
     }
 
     /**
@@ -59,6 +59,6 @@ class MyApi extends SportmonksV3Client
      */
     public function filters(array $query = []): object
     {
-        return $this->call('filters/entity', $query);
+        return $this->callObject('filters/entity', $query);
     }
 }

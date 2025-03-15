@@ -14,7 +14,7 @@ class Rounds extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('rounds', $query, []);
+        return $this->callArray('rounds', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Rounds extends FootballClient
      */
     public function find(int $roundId, array $query = []): object
     {
-        return $this->call("rounds/$roundId", $query);
+        return $this->callObject("rounds/$roundId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Rounds extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->call("rounds/seasons/$seasonId", $query, []);
+        return $this->callArray("rounds/seasons/$seasonId", $query);
     }
 
     /**
@@ -47,6 +47,6 @@ class Rounds extends FootballClient
      */
     public function search(string|int $search, array $query = []): object
     {
-        return $this->call("rounds/search/$search", $query, []);
+        return $this->callArray("rounds/search/$search", $query);
     }
 }

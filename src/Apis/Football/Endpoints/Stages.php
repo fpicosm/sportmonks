@@ -14,7 +14,7 @@ class Stages extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('stages', $query, []);
+        return $this->callArray('stages', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Stages extends FootballClient
      */
     public function find(int $stageId, array $query = []): object
     {
-        return $this->call("stages/$stageId", $query);
+        return $this->callObject("stages/$stageId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Stages extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->call("stages/seasons/$seasonId", $query, []);
+        return $this->callArray("stages/seasons/$seasonId", $query);
     }
 
     /**
@@ -47,6 +47,6 @@ class Stages extends FootballClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->call("stages/search/$search", $query, []);
+        return $this->callArray("stages/search/$search", $query);
     }
 }

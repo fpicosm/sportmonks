@@ -14,7 +14,7 @@ class TvStations extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('tv-stations', $query, []);
+        return $this->callArray('tv-stations', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class TvStations extends FootballClient
      */
     public function find(int $tvStationId, array $query = []): object
     {
-        return $this->call("tv-stations/$tvStationId", $query);
+        return $this->callObject("tv-stations/$tvStationId", $query);
     }
 
     /**
@@ -36,6 +36,6 @@ class TvStations extends FootballClient
      */
     public function byFixture(int $fixtureId, array $query = []): object
     {
-        return $this->call("tv-stations/fixtures/$fixtureId", $query, []);
+        return $this->callArray("tv-stations/fixtures/$fixtureId", $query);
     }
 }

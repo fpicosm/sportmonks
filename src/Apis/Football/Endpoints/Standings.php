@@ -14,7 +14,7 @@ class Standings extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('standings', $query, []);
+        return $this->callArray('standings', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Standings extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->call("standings/seasons/$seasonId", $query, []);
+        return $this->callArray("standings/seasons/$seasonId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Standings extends FootballClient
      */
     public function correctionBySeason(int $seasonId, array $query = []): object
     {
-        return $this->call("standings/corrections/seasons/$seasonId", $query, []);
+        return $this->callArray("standings/corrections/seasons/$seasonId", $query);
     }
 
     /**
@@ -47,7 +47,7 @@ class Standings extends FootballClient
      */
     public function byRound(int $roundId, array $query = []): object
     {
-        return $this->call("standings/rounds/$roundId", $query, []);
+        return $this->callArray("standings/rounds/$roundId", $query);
     }
 
     /**
@@ -58,6 +58,6 @@ class Standings extends FootballClient
      */
     public function liveByLeague(int $leagueId, array $query = []): object
     {
-        return $this->call("standings/live/leagues/$leagueId", $query, []);
+        return $this->callArray("standings/live/leagues/$leagueId", $query);
     }
 }

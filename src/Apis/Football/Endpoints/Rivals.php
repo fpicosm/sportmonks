@@ -14,7 +14,7 @@ class Rivals extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('rivals', $query, []);
+        return $this->callArray('rivals', $query);
     }
 
     /**
@@ -25,6 +25,6 @@ class Rivals extends FootballClient
      */
     public function byTeam(int $teamId, array $query = []): object
     {
-        return $this->call("rivals/teams/$teamId", $query, []);
+        return $this->callArray("rivals/teams/$teamId", $query);
     }
 }

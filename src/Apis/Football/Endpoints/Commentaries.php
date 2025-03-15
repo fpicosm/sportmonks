@@ -14,7 +14,7 @@ class Commentaries extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('commentaries', $query, []);
+        return $this->callArray('commentaries', $query);
     }
 
     /**
@@ -25,6 +25,6 @@ class Commentaries extends FootballClient
      */
     public function byFixture(int $fixtureId, array $query = []): object
     {
-        return $this->call("commentaries/fixtures/$fixtureId", $query, []);
+        return $this->callArray("commentaries/fixtures/$fixtureId", $query);
     }
 }

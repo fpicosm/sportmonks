@@ -14,7 +14,7 @@ class Regions extends CoreClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('regions', $query, []);
+        return $this->callArray('regions', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Regions extends CoreClient
      */
     public function find(int $regionId, array $query = []): object
     {
-        return $this->call("regions/$regionId", $query);
+        return $this->callObject("regions/$regionId", $query);
     }
 
     /**
@@ -36,6 +36,6 @@ class Regions extends CoreClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->call("regions/search/$search", $query, []);
+        return $this->callArray("regions/search/$search", $query);
     }
 }

@@ -14,7 +14,7 @@ class Livescores extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('livescores', $query, []);
+        return $this->callArray('livescores', $query);
     }
 
     /**
@@ -24,7 +24,7 @@ class Livescores extends FootballClient
      */
     public function inplay(array $query = []): object
     {
-        return $this->call('livescores/inplay', $query, []);
+        return $this->callArray('livescores/inplay', $query);
     }
 
     /**
@@ -34,6 +34,6 @@ class Livescores extends FootballClient
      */
     public function lastUpdated(array $query = []): object
     {
-        return $this->call('livescores/latest', $query, []);
+        return $this->callArray('livescores/latest', $query);
     }
 }

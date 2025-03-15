@@ -14,6 +14,6 @@ class Timezones extends CoreClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('timezones', $query, []);
+        return $this->callArray('timezones', $query);
     }
 }

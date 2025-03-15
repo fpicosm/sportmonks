@@ -14,7 +14,7 @@ class Types extends CoreClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('types', $query, []);
+        return $this->callArray('types', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Types extends CoreClient
      */
     public function find(int $typeId, array $query = []): object
     {
-        return $this->call("types/$typeId", $query);
+        return $this->callObject("types/$typeId", $query);
     }
 
     /**
@@ -35,6 +35,6 @@ class Types extends CoreClient
      */
     public function byEntities(array $query = []): object
     {
-        return $this->call('types/entities', $query, []);
+        return $this->callArray('types/entities', $query);
     }
 }
