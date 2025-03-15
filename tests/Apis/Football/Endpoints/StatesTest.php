@@ -14,7 +14,10 @@ class StatesTest extends TestCase
      */
     #[Test] public function get_all_states_test()
     {
-        $response = Sportmonks::football()->states()->all();
+        $response = Sportmonks::football()
+            ->states()
+            ->all();
+
         $this->assertEquals('/v3/football/states', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);
@@ -28,7 +31,11 @@ class StatesTest extends TestCase
     #[Test] public function get_state_by_id_test()
     {
         $stateId = 1;
-        $response = Sportmonks::football()->states()->find($stateId);
+
+        $response = Sportmonks::football()
+            ->states()
+            ->find($stateId);
+
         $this->assertEquals("/v3/football/states/$stateId", $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertEquals('Not Started', $response->data->name);

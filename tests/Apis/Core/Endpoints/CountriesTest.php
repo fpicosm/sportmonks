@@ -4,6 +4,7 @@ namespace Apis\Core\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
+use Sportmonks\Apis\Core\Endpoints\Countries;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -14,7 +15,10 @@ class CountriesTest extends TestCase
      */
     #[Test] public function get_all_countries_test(): void
     {
-        $response = Sportmonks::core()->countries()->all();
+        $response = Sportmonks::core()
+            ->countries()
+            ->all();
+
         $this->assertEquals('/v3/core/countries', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);
@@ -28,10 +32,15 @@ class CountriesTest extends TestCase
     #[Test] public function get_country_by_id_test(): void
     {
         $countryId = 32;
-        $response = Sportmonks::core()->countries()->find($countryId);
+
+        $response = Sportmonks::core()
+            ->countries()
+            ->find($countryId);
+
         $this->assertEquals("/v3/core/countries/$countryId", $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
+        $this->assertSchemaEquals(Countries::fields, $response->data);
     }
 
     /**
@@ -40,7 +49,11 @@ class CountriesTest extends TestCase
     #[Test] public function search_countries_by_name_test(): void
     {
         $name = 'spain';
-        $response = Sportmonks::core()->countries()->search($name);
+
+        $response = Sportmonks::core()
+            ->countries()
+            ->search($name);
+
         $this->assertEquals("/v3/core/countries/search/$name", $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);

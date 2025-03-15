@@ -8,6 +8,25 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class Fixtures extends FootballClient
 {
+    const array fields = [
+        'id',
+        'sport_id',
+        'league_id',
+        'season_id',
+        'stage_id',
+        'group_id',
+        'aggregate_id',
+        'state_id',
+        'round_id',
+        'venue_id',
+        'name',
+        'starting_at',
+        'result_info',
+        'leg',
+        'details',
+        'length',
+    ];
+
     /**
      * @param array $query
      * @return object

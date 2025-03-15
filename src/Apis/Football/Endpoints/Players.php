@@ -7,6 +7,27 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class Players extends FootballClient
 {
+    const array fields = [
+        'id',
+        'sport_id',
+        'country_id',
+        'nationality_id',
+        'city_id',
+        'position_id',
+        'detailed_position_id',
+        'type_id',
+        'common_name',
+        'firstname',
+        'lastname',
+        'name',
+        'display_name',
+        'image_path',
+        'height',
+        'weight',
+        'date_of_birth',
+        'gender',
+    ];
+
     /**
      * @param array $query
      * @return object

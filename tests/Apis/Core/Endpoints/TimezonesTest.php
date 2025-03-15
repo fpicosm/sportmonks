@@ -14,7 +14,10 @@ class TimezonesTest extends TestCase
      */
     #[Test] public function get_all_timezones_test(): void
     {
-        $response = Sportmonks::core()->timezones()->all();
+        $response = Sportmonks::core()
+            ->timezones()
+            ->all();
+
         $this->assertEquals('/v3/core/timezones', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);

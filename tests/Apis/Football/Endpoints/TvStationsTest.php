@@ -14,7 +14,10 @@ class TvStationsTest extends TestCase
      */
     #[Test] public function get_all_tv_stations_test()
     {
-        $response = Sportmonks::football()->tvStations()->all();
+        $response = Sportmonks::football()
+            ->tvStations()
+            ->all();
+
         $this->assertEquals('/v3/football/tv-stations', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);
@@ -28,7 +31,11 @@ class TvStationsTest extends TestCase
     #[Test] public function get_tv_station_by_id_test()
     {
         $tvStationId = 1;
-        $response = Sportmonks::football()->tvStations()->find($tvStationId);
+
+        $response = Sportmonks::football()
+            ->tvStations()
+            ->find($tvStationId);
+
         $this->assertEquals("/v3/football/tv-stations/$tvStationId", $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
@@ -40,7 +47,11 @@ class TvStationsTest extends TestCase
     #[Test] public function get_tv_stations_by_fixture_id_test()
     {
         $fixtureId = 1;
-        $response = Sportmonks::football()->tvStations()->byFixture($fixtureId);
+        
+        $response = Sportmonks::football()
+            ->tvStations()
+            ->byFixture($fixtureId);
+
         $this->assertEquals("/v3/football/tv-stations/fixtures/$fixtureId", $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);

@@ -16,12 +16,20 @@ class SportmonksV3Client extends BaseClient
 
     public function setInclude(...$relations): self
     {
+        if (is_array($relations[0])) {
+            $relations = collect($relations)->flatten()->toArray();
+        }
+
         $this->include = $relations;
         return $this;
     }
 
     public function setSelect(...$fields): self
     {
+        if (is_array($fields[0])) {
+            $fields = collect($fields)->flatten()->toArray();
+        }
+
         $this->select = $fields;
         return $this;
     }

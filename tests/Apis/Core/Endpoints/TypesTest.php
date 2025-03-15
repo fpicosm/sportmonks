@@ -4,6 +4,7 @@ namespace Apis\Core\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
+use Sportmonks\Apis\Core\Endpoints\Types;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -14,7 +15,10 @@ class TypesTest extends TestCase
      */
     #[Test] public function get_all_types_test(): void
     {
-        $response = Sportmonks::core()->types()->all();
+        $response = Sportmonks::core()
+            ->types()
+            ->all();
+
         $this->assertEquals('/v3/core/types', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);
@@ -28,10 +32,15 @@ class TypesTest extends TestCase
     #[Test] public function get_type_by_id_test(): void
     {
         $typeId = 1;
-        $response = Sportmonks::core()->types()->find($typeId);
+
+        $response = Sportmonks::core()
+            ->types()
+            ->find($typeId);
+
         $this->assertEquals("/v3/core/types/$typeId", $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
+        $this->assertSchemaEquals(Types::fields, $response->data);
     }
 
     /**
@@ -39,7 +48,10 @@ class TypesTest extends TestCase
      */
     #[Test] public function get_types_by_entity_test(): void
     {
-        $response = Sportmonks::core()->types()->byEntities();
+        $response = Sportmonks::core()
+            ->types()
+            ->byEntities();
+
         $this->assertEquals('/v3/core/types/entities', $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertObjectHasProperty('CoachStatisticDetail', $response->data);

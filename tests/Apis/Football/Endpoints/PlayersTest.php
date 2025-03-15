@@ -4,6 +4,7 @@ namespace Apis\Football\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
+use Sportmonks\Apis\Football\Endpoints\Players;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -14,7 +15,10 @@ class PlayersTest extends TestCase
      */
     #[Test] public function get_all_players_test(): void
     {
-        $response = Sportmonks::football()->players()->all();
+        $response = Sportmonks::football()
+            ->players()
+            ->all();
+
         $this->assertEquals('/v3/football/players', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);
@@ -28,11 +32,16 @@ class PlayersTest extends TestCase
     #[Test] public function get_player_by_id_test(): void
     {
         $playerId = 14;
-        $response = Sportmonks::football()->players()->find($playerId);
+
+        $response = Sportmonks::football()
+            ->players()
+            ->find($playerId);
+
         $this->assertEquals("/v3/football/players/$playerId", $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertEquals('D. Agger', $response->data->common_name);
         $this->assertObjectNotHasProperty('pagination', $response);
+        $this->assertSchemaEquals(Players::fields, $response->data);
     }
 
     /**
@@ -41,7 +50,11 @@ class PlayersTest extends TestCase
     #[Test] public function get_players_by_country_id_test(): void
     {
         $countryId = 320;
-        $response = Sportmonks::football()->players()->byCountry($countryId);
+
+        $response = Sportmonks::football()
+            ->players()
+            ->byCountry($countryId);
+
         $this->assertEquals("/v3/football/players/countries/$countryId", $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);
@@ -55,7 +68,11 @@ class PlayersTest extends TestCase
     #[Test] public function search_players_by_name_test(): void
     {
         $name = 'Agg';
-        $response = Sportmonks::football()->players()->search($name);
+
+        $response = Sportmonks::football()
+            ->players()
+            ->search($name);
+
         $this->assertEquals("/v3/football/players/search/$name", $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);
@@ -69,7 +86,10 @@ class PlayersTest extends TestCase
      */
     #[Test] public function get_last_updated_players_test(): void
     {
-        $response = Sportmonks::football()->players()->lastUpdated();
+        $response = Sportmonks::football()
+            ->players()
+            ->lastUpdated();
+        
         $this->assertEquals("/v3/football/players/latest", $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);

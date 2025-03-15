@@ -15,7 +15,11 @@ class TopScorersTest extends TestCase
     #[Test] public function get_topscorers_by_season_id_test()
     {
         $seasonId = 23621;
-        $response = Sportmonks::football()->topScorers()->bySeason($seasonId);
+
+        $response = Sportmonks::football()
+            ->topScorers()
+            ->bySeason($seasonId);
+
         $this->assertEquals("/v3/football/topscorers/seasons/$seasonId", $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);
@@ -29,7 +33,11 @@ class TopScorersTest extends TestCase
     #[Test] public function get_topscorers_by_stage_id_test()
     {
         $stageId = 77471332;
-        $response = Sportmonks::football()->topScorers()->byStage($stageId);
+        
+        $response = Sportmonks::football()
+            ->topScorers()
+            ->byStage($stageId);
+
         $this->assertEquals("/v3/football/topscorers/stages/$stageId", $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);

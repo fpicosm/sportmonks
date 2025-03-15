@@ -7,6 +7,20 @@ use Sportmonks\Apis\Core\CoreClient;
 
 class Countries extends CoreClient
 {
+    const array fields = [
+        'id',
+        'continent_id',
+        'name',
+        'official_name',
+        'fifa_name',
+        'iso2',
+        'iso3',
+        'latitude',
+        'longitude',
+        'borders',
+        'image_path',
+    ];
+
     /**
      * @param array $query
      * @return object

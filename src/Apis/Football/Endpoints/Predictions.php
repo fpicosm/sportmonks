@@ -7,6 +7,13 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class Predictions extends FootballClient
 {
+    const array fields = [
+        'id',
+        'league_id',
+        'type_id',
+        'data',
+    ];
+
     /**
      * @param array $query
      * @return object
@@ -39,24 +46,8 @@ class Predictions extends FootballClient
         return $this->call("predictions/probabilities/fixtures/$fixtureId", $query, []);
     }
 
-    /**
-     * @param array $query
-     * @return object
-     * @throws GuzzleException
-     */
-    public function valueBets(array $query = []): object
+    public function valueBets(): ValueBets
     {
-        return $this->call('predictions/value-bets', $query, []);
-    }
-
-    /**
-     * @param int $fixtureId
-     * @param array $query
-     * @return object
-     * @throws GuzzleException
-     */
-    public function valueBetsByFixture(int $fixtureId, array $query = []): object
-    {
-        return $this->call("predictions/value-bets/fixtures/$fixtureId", $query, []);
+        return new ValueBets();
     }
 }

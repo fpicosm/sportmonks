@@ -7,6 +7,13 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class Expected extends FootballClient
 {
+    const array fields = [
+        'id',
+        'fixture_id',
+        'type_id',
+        'value',
+    ];
+
     /**
      * @param array $query
      * @return object

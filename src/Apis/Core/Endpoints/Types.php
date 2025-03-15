@@ -7,6 +7,15 @@ use Sportmonks\Apis\Core\CoreClient;
 
 class Types extends CoreClient
 {
+    const array fields = [
+        'id',
+        'name',
+        'code',
+        'developer_name',
+        'model_type',
+        'stat_group',
+    ];
+
     /**
      * @param array $query
      * @return object

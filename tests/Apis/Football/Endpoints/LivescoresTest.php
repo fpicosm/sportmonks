@@ -14,7 +14,10 @@ class LivescoresTest extends TestCase
      */
     #[Test] public function get_all_livescores_test(): void
     {
-        $response = Sportmonks::football()->livescores()->all();
+        $response = Sportmonks::football()
+            ->livescores()
+            ->all();
+
         $this->assertEquals('/v3/football/livescores', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
@@ -25,7 +28,10 @@ class LivescoresTest extends TestCase
      */
     #[Test] public function get_inplay_livescores_test(): void
     {
-        $response = Sportmonks::football()->livescores()->inplay();
+        $response = Sportmonks::football()
+            ->livescores()
+            ->inplay();
+
         $this->assertEquals('/v3/football/livescores/inplay', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
@@ -36,7 +42,10 @@ class LivescoresTest extends TestCase
      */
     #[Test] public function get_latest_updated_livescores_test(): void
     {
-        $response = Sportmonks::football()->livescores()->lastUpdated();
+        $response = Sportmonks::football()
+            ->livescores()
+            ->lastUpdated();
+
         $this->assertEquals('/v3/football/livescores/latest', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);

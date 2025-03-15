@@ -7,6 +7,15 @@ use Sportmonks\Apis\Core\CoreClient;
 
 class Cities extends CoreClient
 {
+    const array fields = [
+        'id',
+        'country_id',
+        'region_id',
+        'name',
+        'latitude',
+        'longitude',
+    ];
+
     /**
      * @param array $query
      * @return object

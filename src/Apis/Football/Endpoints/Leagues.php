@@ -8,6 +8,19 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class Leagues extends FootballClient
 {
+    const array fields = [
+        'id',
+        'sport_id',
+        'country_id',
+        'name',
+        'active',
+        'short_code',
+        'image_path',
+        'type',
+        'sub_type',
+        'last_played_at',
+    ];
+
     /**
      * @param array $query
      * @return object

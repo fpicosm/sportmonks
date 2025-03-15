@@ -4,6 +4,7 @@ namespace Apis\Core\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
+use Sportmonks\Apis\Core\Endpoints\Regions;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -14,7 +15,10 @@ class RegionsTest extends TestCase
      */
     #[Test] public function get_all_regions_test(): void
     {
-        $response = Sportmonks::core()->regions()->all();
+        $response = Sportmonks::core()
+            ->regions()
+            ->all();
+
         $this->assertEquals('/v3/core/regions', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);
@@ -28,10 +32,15 @@ class RegionsTest extends TestCase
     #[Test] public function get_region_by_id_test(): void
     {
         $regionId = 1;
-        $response = Sportmonks::core()->regions()->setInclude('cities')->find($regionId);
+
+        $response = Sportmonks::core()
+            ->regions()
+            ->find($regionId);
+
         $this->assertEquals("/v3/core/regions/$regionId", $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
+        $this->assertSchemaEquals(Regions::fields, $response->data);
     }
 
     /**
@@ -40,7 +49,11 @@ class RegionsTest extends TestCase
     #[Test] public function search_regions_by_name_test(): void
     {
         $name = 'madrid';
-        $response = Sportmonks::core()->regions()->search($name);
+
+        $response = Sportmonks::core()
+            ->regions()
+            ->search($name);
+
         $this->assertEquals("/v3/core/regions/search/$name", $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertNotEmpty($response->data);

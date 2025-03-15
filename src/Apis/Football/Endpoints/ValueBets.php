@@ -5,17 +5,13 @@ namespace Sportmonks\Apis\Football\Endpoints;
 use GuzzleHttp\Exception\GuzzleException;
 use Sportmonks\Apis\Football\FootballClient;
 
-class Commentaries extends FootballClient
+class ValueBets extends FootballClient
 {
     const array fields = [
         'id',
         'fixture_id',
-        'comment',
-        'minute',
-        'extra_minute',
-        'is_goal',
-        'is_important',
-        'order',
+        'predictions',
+        'type_id',
     ];
 
     /**
@@ -25,7 +21,7 @@ class Commentaries extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->call('commentaries', $query, []);
+        return $this->call('predictions/value-bets', $query, []);
     }
 
     /**
@@ -36,6 +32,6 @@ class Commentaries extends FootballClient
      */
     public function byFixture(int $fixtureId, array $query = []): object
     {
-        return $this->call("commentaries/fixtures/$fixtureId", $query, []);
+        return $this->call("predictions/value-bets/fixtures/$fixtureId", $query, []);
     }
 }

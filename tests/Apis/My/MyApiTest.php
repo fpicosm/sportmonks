@@ -15,6 +15,7 @@ class MyApiTest extends TestCase
     #[Test] public function get_my_enrichments_test()
     {
         $response = Sportmonks::my()->enrichments();
+
         $this->assertEquals('/v3/my/enrichments', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertContainsOnlyObject($response->data);
@@ -26,6 +27,7 @@ class MyApiTest extends TestCase
     #[Test] public function get_my_resources_test()
     {
         $response = Sportmonks::my()->resources();
+
         $this->assertEquals('/v3/my/resources', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertContainsOnlyObject($response->data);
@@ -37,6 +39,7 @@ class MyApiTest extends TestCase
     #[Test] public function get_my_leagues_test()
     {
         $response = Sportmonks::my()->leagues();
+
         $this->assertEquals('/v3/my/leagues', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertContainsOnlyObject($response->data);
@@ -48,6 +51,7 @@ class MyApiTest extends TestCase
     #[Test] public function get_my_usage_test()
     {
         $response = Sportmonks::my()->usage();
+        
         $this->assertEquals('/v3/my/usage', $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertContainsOnlyObject($response->data);
