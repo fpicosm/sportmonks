@@ -58,5 +58,13 @@ class CountriesTest extends TestCase
         $this->assertContainsOnlyObject($response->data);
         $this->assertStringContainsStringIgnoringCase($name, $response->data[0]->name);
         $this->assertObjectHasProperty('pagination', $response);
+
+        $res = Sportmonks::core()
+            ->countries()
+            ->getPage(1, 10, 'desc')
+            ->sortBy('name', 'asc')
+            ->all();
+
+        dd($res->data);
     }
 }

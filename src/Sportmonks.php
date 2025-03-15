@@ -5,6 +5,7 @@ namespace Sportmonks;
 use Sportmonks\Apis\Core\CoreApi;
 use Sportmonks\Apis\Football\FootballApi;
 use Sportmonks\Apis\My\MyApi;
+use Sportmonks\Apis\Odds\OddsApi;
 
 class Sportmonks
 {
@@ -21,5 +22,10 @@ class Sportmonks
     public static function my(): MyApi
     {
         return new MyApi();
+    }
+
+    public static function odds(): OddsApi
+    {
+        return new OddsApi();
     }
 }

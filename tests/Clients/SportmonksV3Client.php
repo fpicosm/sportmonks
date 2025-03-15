@@ -236,7 +236,7 @@ class SportmonksV3Client extends TestCase
 
         // Dynamic filters
         $countryId = 32;
-        
+
         $response = Sportmonks::football()
             ->leagues()
             ->setInclude('country')
@@ -259,5 +259,15 @@ class SportmonksV3Client extends TestCase
         foreach ($response->data as $fixture) {
             $this->assertEquals('Deleted', $fixture->state->name);
         }
+
+        $response = Sportmonks::football()
+            ->fixtures()
+            ->setFilters([
+                'fixtureLeagues' => [564, 8],
+                'todayDate',
+            ])
+            ->all();
+
+        dd($response->data);
     }
 }
