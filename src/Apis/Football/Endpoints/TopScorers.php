@@ -15,7 +15,7 @@ class TopScorers extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->callArray("topscorers/seasons/$seasonId", $query);
+        return $this->getArray("topscorers/seasons/$seasonId", $query);
     }
 
     /**
@@ -26,6 +26,6 @@ class TopScorers extends FootballClient
      */
     public function byStage(int $stageId, array $query = []): object
     {
-        return $this->callArray("topscorers/stages/$stageId", $query);
+        return $this->getArray("topscorers/stages/$stageId", $query);
     }
 }

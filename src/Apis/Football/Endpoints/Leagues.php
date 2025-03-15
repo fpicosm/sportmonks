@@ -15,7 +15,7 @@ class Leagues extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('leagues', $query);
+        return $this->getArray('leagues', $query);
     }
 
     /**
@@ -26,7 +26,7 @@ class Leagues extends FootballClient
      */
     public function find(int $leagueId, array $query = []): object
     {
-        return $this->callObject("leagues/$leagueId", $query);
+        return $this->getObject("leagues/$leagueId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Leagues extends FootballClient
      */
     public function live(array $query = []): object
     {
-        return $this->callArray('leagues/live', $query);
+        return $this->getArray('leagues/live', $query);
     }
 
     /**
@@ -47,7 +47,7 @@ class Leagues extends FootballClient
      */
     public function byFixtureDate(string|Carbon $date, array $query = []): object
     {
-        return $this->callArray("leagues/date/{$this->formatDate($date)}", $query);
+        return $this->getArray("leagues/date/{$this->formatDate($date)}", $query);
     }
 
     /**
@@ -58,7 +58,7 @@ class Leagues extends FootballClient
      */
     public function byCountry(int $countryId, array $query = []): object
     {
-        return $this->callArray("leagues/countries/$countryId", $query);
+        return $this->getArray("leagues/countries/$countryId", $query);
     }
 
     /**
@@ -69,7 +69,7 @@ class Leagues extends FootballClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->callArray("leagues/search/$search", $query);
+        return $this->getArray("leagues/search/$search", $query);
     }
 
     /**
@@ -80,7 +80,7 @@ class Leagues extends FootballClient
      */
     public function allByTeam(int $teamId, array $query = []): object
     {
-        return $this->callArray("leagues/teams/$teamId", $query);
+        return $this->getArray("leagues/teams/$teamId", $query);
     }
 
     /**
@@ -91,6 +91,6 @@ class Leagues extends FootballClient
      */
     public function currentByTeam(int $teamId, array $query = []): object
     {
-        return $this->callArray("leagues/teams/$teamId/current", $query);
+        return $this->getArray("leagues/teams/$teamId/current", $query);
     }
 }

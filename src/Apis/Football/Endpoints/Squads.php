@@ -15,7 +15,7 @@ class Squads extends FootballClient
      */
     public function currentByTeam(int $teamId, array $query = []): object
     {
-        return $this->callArray("squads/teams/$teamId", $query);
+        return $this->getArray("squads/teams/$teamId", $query);
     }
 
     /**
@@ -26,7 +26,7 @@ class Squads extends FootballClient
      */
     public function extendedByTeam(int $teamId, array $query = []): object
     {
-        return $this->callArray("squads/teams/$teamId/extended", $query);
+        return $this->getArray("squads/teams/$teamId/extended", $query);
     }
 
     /**
@@ -38,6 +38,6 @@ class Squads extends FootballClient
      */
     public function bySeasonAndTeam(int $seasonId, int $teamId, array $query = []): object
     {
-        return $this->callArray("squads/seasons/$seasonId/teams/$teamId", $query);
+        return $this->getArray("squads/seasons/$seasonId/teams/$teamId", $query);
     }
 }

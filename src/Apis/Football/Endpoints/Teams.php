@@ -14,7 +14,7 @@ class Teams extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('teams', $query);
+        return $this->getArray('teams', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Teams extends FootballClient
      */
     public function find(int $teamId, array $query = []): object
     {
-        return $this->callObject("teams/$teamId", $query);
+        return $this->getObject("teams/$teamId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Teams extends FootballClient
      */
     public function byCountry(int $countryId, array $query = []): object
     {
-        return $this->callArray("teams/countries/$countryId", $query);
+        return $this->getArray("teams/countries/$countryId", $query);
     }
 
     /**
@@ -47,7 +47,7 @@ class Teams extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->callArray("teams/seasons/$seasonId", $query);
+        return $this->getArray("teams/seasons/$seasonId", $query);
     }
 
     /**
@@ -58,6 +58,6 @@ class Teams extends FootballClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->callArray("teams/search/$search", $query);
+        return $this->getArray("teams/search/$search", $query);
     }
 }

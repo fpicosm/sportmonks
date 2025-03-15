@@ -14,7 +14,7 @@ class Venues extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('venues', $query);
+        return $this->getArray('venues', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Venues extends FootballClient
      */
     public function find(int $venueId, array $query = []): object
     {
-        return $this->callObject("venues/$venueId", $query);
+        return $this->getObject("venues/$venueId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Venues extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->callArray("venues/seasons/$seasonId", $query);
+        return $this->getArray("venues/seasons/$seasonId", $query);
     }
 
     /**
@@ -47,6 +47,6 @@ class Venues extends FootballClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->callArray("venues/search/$search", $query);
+        return $this->getArray("venues/search/$search", $query);
     }
 }

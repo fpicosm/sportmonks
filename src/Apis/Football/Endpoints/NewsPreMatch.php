@@ -14,7 +14,7 @@ class NewsPreMatch extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('news/pre-match', $query);
+        return $this->getArray('news/pre-match', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class NewsPreMatch extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->callArray("news/pre-match/seasons/$seasonId", $query);
+        return $this->getArray("news/pre-match/seasons/$seasonId", $query);
     }
 
     /**
@@ -35,6 +35,6 @@ class NewsPreMatch extends FootballClient
      */
     public function upcoming(array $query = []): object
     {
-        return $this->callArray('news/pre-match/upcoming', $query);
+        return $this->getArray('news/pre-match/upcoming', $query);
     }
 }

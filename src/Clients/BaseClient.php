@@ -33,7 +33,7 @@ abstract class BaseClient
      * @return object
      * @throws GuzzleException
      */
-    public function callArray(string $url, array $params = []): object
+    public function getArray(string $url, array $params = []): object
     {
         return $this->call($url, [], $params);
     }
@@ -74,7 +74,7 @@ abstract class BaseClient
      * @return object
      * @throws GuzzleException
      */
-    public function callObject(string $url, array $params = []): object
+    public function getObject(string $url, array $params = []): object
     {
         return $this->call($url, null, $params);
     }

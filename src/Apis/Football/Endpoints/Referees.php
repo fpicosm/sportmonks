@@ -14,7 +14,7 @@ class Referees extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('referees', $query);
+        return $this->getArray('referees', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Referees extends FootballClient
      */
     public function find(int $refereeId, array $query = []): object
     {
-        return $this->callObject("referees/$refereeId", $query);
+        return $this->getObject("referees/$refereeId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Referees extends FootballClient
      */
     public function byCountry(int $countryId, array $query = []): object
     {
-        return $this->callArray("referees/countries/$countryId", $query);
+        return $this->getArray("referees/countries/$countryId", $query);
     }
 
     /**
@@ -47,7 +47,7 @@ class Referees extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->callArray("referees/seasons/$seasonId", $query);
+        return $this->getArray("referees/seasons/$seasonId", $query);
     }
 
     /**
@@ -58,6 +58,6 @@ class Referees extends FootballClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->callArray("referees/search/$search", $query);
+        return $this->getArray("referees/search/$search", $query);
     }
 }

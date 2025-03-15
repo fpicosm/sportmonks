@@ -14,7 +14,7 @@ class Expected extends FootballClient
      */
     public function byTeam(array $query = []): object
     {
-        return $this->callArray('expected/fixtures', $query);
+        return $this->getArray('expected/fixtures', $query);
     }
 
     /**
@@ -24,6 +24,6 @@ class Expected extends FootballClient
      */
     public function byPlayer(array $query = []): object
     {
-        return $this->callArray('expected/lineups', $query);
+        return $this->getArray('expected/lineups', $query);
     }
 }

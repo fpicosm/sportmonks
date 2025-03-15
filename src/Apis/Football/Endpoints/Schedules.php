@@ -15,7 +15,7 @@ class Schedules extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->callArray("schedules/seasons/$seasonId", $query);
+        return $this->getArray("schedules/seasons/$seasonId", $query);
     }
 
     /**
@@ -26,7 +26,7 @@ class Schedules extends FootballClient
      */
     public function byTeam(int $teamId, array $query = []): object
     {
-        return $this->callArray("schedules/teams/$teamId", $query);
+        return $this->getArray("schedules/teams/$teamId", $query);
     }
 
     /**
@@ -38,6 +38,6 @@ class Schedules extends FootballClient
      */
     public function bySeasonAndTeam(int $seasonId, int $teamId, array $query = []): object
     {
-        return $this->callArray("schedules/seasons/$seasonId/teams/$teamId", $query);
+        return $this->getArray("schedules/seasons/$seasonId/teams/$teamId", $query);
     }
 }

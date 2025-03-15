@@ -14,7 +14,7 @@ class States extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('states', $query);
+        return $this->getArray('states', $query);
     }
 
     /**
@@ -25,6 +25,6 @@ class States extends FootballClient
      */
     public function find(int $stateId, array $query = []): object
     {
-        return $this->callObject("states/$stateId", $query);
+        return $this->getObject("states/$stateId", $query);
     }
 }

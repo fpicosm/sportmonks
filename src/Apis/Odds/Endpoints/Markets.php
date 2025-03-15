@@ -14,7 +14,7 @@ class Markets extends OddsClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('markets', $query);
+        return $this->getArray('markets', $query);
     }
 
     /**
@@ -24,7 +24,7 @@ class Markets extends OddsClient
      */
     public function premium(array $query = []): object
     {
-        return $this->callArray('markets/premium', $query);
+        return $this->getArray('markets/premium', $query);
     }
 
     /**
@@ -35,7 +35,7 @@ class Markets extends OddsClient
      */
     public function find(int $marketId, array $query = []): object
     {
-        return $this->callArray("markets/$marketId", $query);
+        return $this->getArray("markets/$marketId", $query);
     }
 
     /**
@@ -46,6 +46,6 @@ class Markets extends OddsClient
      */
     public function search(string $name, array $query = []): object
     {
-        return $this->callArray("markets/search/$name", $query);
+        return $this->getArray("markets/search/$name", $query);
     }
 }

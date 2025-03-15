@@ -14,7 +14,7 @@ class NewsPostMatch extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('news/post-match', $query);
+        return $this->getArray('news/post-match', $query);
     }
 
     /**
@@ -25,6 +25,6 @@ class NewsPostMatch extends FootballClient
      */
     public function bySeason(int $seasonId, array $query = []): object
     {
-        return $this->callArray("news/post-match/seasons/$seasonId", $query);
+        return $this->getArray("news/post-match/seasons/$seasonId", $query);
     }
 }

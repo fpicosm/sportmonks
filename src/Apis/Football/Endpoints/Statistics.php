@@ -15,7 +15,7 @@ class Statistics extends FootballClient
      */
     public function byStage(int $stageId, array $query = []): object
     {
-        return $this->callArray("statistics/stages/$stageId", $query);
+        return $this->getArray("statistics/stages/$stageId", $query);
     }
 
     /**
@@ -26,7 +26,7 @@ class Statistics extends FootballClient
      */
     public function byRound(int $roundId, array $query = []): object
     {
-        return $this->callArray("statistics/rounds/$roundId", $query);
+        return $this->getArray("statistics/rounds/$roundId", $query);
     }
 
     /**
@@ -49,7 +49,7 @@ class Statistics extends FootballClient
      */
     private function byParticipant(string $participant, int $participantId, array $query = []): object
     {
-        return $this->callArray("statistics/seasons/$participant/$participantId", $query);
+        return $this->getArray("statistics/seasons/$participant/$participantId", $query);
     }
 
     /**

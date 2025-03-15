@@ -14,7 +14,7 @@ class Countries extends CoreClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('countries', $query);
+        return $this->getArray('countries', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Countries extends CoreClient
      */
     public function find(int $countryId, array $query = []): object
     {
-        return $this->callObject("countries/$countryId", $query);
+        return $this->getObject("countries/$countryId", $query);
     }
 
     /**
@@ -36,6 +36,6 @@ class Countries extends CoreClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->callArray("countries/search/$search", $query);
+        return $this->getArray("countries/search/$search", $query);
     }
 }

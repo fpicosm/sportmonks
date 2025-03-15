@@ -15,7 +15,7 @@ class Fixtures extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('fixtures', $query);
+        return $this->getArray('fixtures', $query);
     }
 
     /**
@@ -26,7 +26,7 @@ class Fixtures extends FootballClient
      */
     public function find(int $fixtureId, array $query = []): object
     {
-        return $this->callObject("fixtures/$fixtureId", $query);
+        return $this->getObject("fixtures/$fixtureId", $query);
     }
 
     /**
@@ -41,7 +41,7 @@ class Fixtures extends FootballClient
             ? join(',', $fixtureIds)
             : $fixtureIds;
 
-        return $this->callArray("fixtures/multi/$fixtureIds", $query);
+        return $this->getArray("fixtures/multi/$fixtureIds", $query);
     }
 
     /**
@@ -52,7 +52,7 @@ class Fixtures extends FootballClient
      */
     public function byDate(string|Carbon $date, array $query = []): object
     {
-        return $this->callArray("fixtures/date/{$this->formatDate($date)}", $query);
+        return $this->getArray("fixtures/date/{$this->formatDate($date)}", $query);
     }
 
     /**
@@ -64,7 +64,7 @@ class Fixtures extends FootballClient
      */
     public function byDateRange(string|Carbon $from, string|Carbon $to, array $query = []): object
     {
-        return $this->callArray("fixtures/between/{$this->formatDate($from)}/{$this->formatDate($to)}", $query);
+        return $this->getArray("fixtures/between/{$this->formatDate($from)}/{$this->formatDate($to)}", $query);
     }
 
     /**
@@ -77,7 +77,7 @@ class Fixtures extends FootballClient
      */
     public function byDateRangeForTeam(string|Carbon $from, string|Carbon $to, int $teamId, array $query = []): object
     {
-        return $this->callArray("fixtures/between/{$this->formatDate($from)}/{$this->formatDate($to)}/$teamId", $query);
+        return $this->getArray("fixtures/between/{$this->formatDate($from)}/{$this->formatDate($to)}/$teamId", $query);
     }
 
     /**
@@ -89,7 +89,7 @@ class Fixtures extends FootballClient
      */
     public function h2h(int $firstTeamId, int $secondTeamId, array $query = []): object
     {
-        return $this->callArray("fixtures/head-to-head/$firstTeamId/$secondTeamId", $query);
+        return $this->getArray("fixtures/head-to-head/$firstTeamId/$secondTeamId", $query);
     }
 
     /**
@@ -100,7 +100,7 @@ class Fixtures extends FootballClient
      */
     public function search(string $search, array $query = []): object
     {
-        return $this->callArray("fixtures/search/$search", $query);
+        return $this->getArray("fixtures/search/$search", $query);
     }
 
     /**
@@ -111,7 +111,7 @@ class Fixtures extends FootballClient
      */
     public function upcomingByMarket(int $marketId, array $query = []): object
     {
-        return $this->callArray("fixtures/upcoming/markets/$marketId", $query);
+        return $this->getArray("fixtures/upcoming/markets/$marketId", $query);
     }
 
     /**
@@ -122,7 +122,7 @@ class Fixtures extends FootballClient
      */
     public function upcomingByTvStation(int $tvStationId, array $query = []): object
     {
-        return $this->callArray("fixtures/upcoming/tv-stations/$tvStationId", $query);
+        return $this->getArray("fixtures/upcoming/tv-stations/$tvStationId", $query);
     }
 
     /**
@@ -133,7 +133,7 @@ class Fixtures extends FootballClient
      */
     public function pastByTvStation(int $tvStationId, array $query = []): object
     {
-        return $this->callArray("fixtures/past/tv-stations/$tvStationId", $query);
+        return $this->getArray("fixtures/past/tv-stations/$tvStationId", $query);
     }
 
     /**
@@ -143,6 +143,6 @@ class Fixtures extends FootballClient
      */
     public function lastUpdated(array $query = []): object
     {
-        return $this->callArray('fixtures/latest', $query);
+        return $this->getArray('fixtures/latest', $query);
     }
 }

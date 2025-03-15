@@ -14,7 +14,7 @@ class Predictions extends FootballClient
      */
     public function all(array $query = []): object
     {
-        return $this->callArray('predictions/probabilities', $query);
+        return $this->getArray('predictions/probabilities', $query);
     }
 
     /**
@@ -25,7 +25,7 @@ class Predictions extends FootballClient
      */
     public function byLeague(int $leagueId, array $query = []): object
     {
-        return $this->callArray("predictions/predictability/leagues/$leagueId", $query);
+        return $this->getArray("predictions/predictability/leagues/$leagueId", $query);
     }
 
     /**
@@ -36,7 +36,7 @@ class Predictions extends FootballClient
      */
     public function byFixture(int $fixtureId, array $query = []): object
     {
-        return $this->callArray("predictions/probabilities/fixtures/$fixtureId", $query);
+        return $this->getArray("predictions/probabilities/fixtures/$fixtureId", $query);
     }
 
     public function valueBets(): ValueBets
