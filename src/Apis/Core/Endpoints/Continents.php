@@ -7,12 +7,6 @@ use Sportmonks\Apis\Core\CoreClient;
 
 class Continents extends CoreClient
 {
-    const array fields = [
-        'id',
-        'name',
-        'code',
-    ];
-
     /**
      * @param array $query
      * @return object

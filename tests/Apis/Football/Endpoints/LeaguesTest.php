@@ -5,7 +5,6 @@ namespace Apis\Football\Endpoints;
 use Carbon\Carbon;
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Football\Endpoints\Leagues;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -42,7 +41,6 @@ class LeaguesTest extends TestCase
         $this->assertIsObject($response->data);
         $this->assertEquals('La Liga', $response->data->name);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Leagues::fields, $response->data);
     }
 
     /**

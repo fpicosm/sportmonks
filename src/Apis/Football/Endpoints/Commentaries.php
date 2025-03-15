@@ -7,17 +7,6 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class Commentaries extends FootballClient
 {
-    const array fields = [
-        'id',
-        'fixture_id',
-        'comment',
-        'minute',
-        'extra_minute',
-        'is_goal',
-        'is_important',
-        'order',
-    ];
-
     /**
      * @param array $query
      * @return object

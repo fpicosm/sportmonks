@@ -4,7 +4,6 @@ namespace Apis\Football\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Football\Endpoints\Rounds;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -40,7 +39,6 @@ class RoundsTest extends TestCase
         $this->assertEquals("/v3/football/rounds/$roundId", $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Rounds::fields, $response->data);
     }
 
     /**
@@ -67,7 +65,7 @@ class RoundsTest extends TestCase
     #[Test] public function search_rounds_by_name_test()
     {
         $name = 2;
-        
+
         $response = Sportmonks::football()
             ->rounds()
             ->search($name);

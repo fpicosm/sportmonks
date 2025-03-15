@@ -7,13 +7,6 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class ValueBets extends FootballClient
 {
-    const array fields = [
-        'id',
-        'fixture_id',
-        'predictions',
-        'type_id',
-    ];
-
     /**
      * @param array $query
      * @return object

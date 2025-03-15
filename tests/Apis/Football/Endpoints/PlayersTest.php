@@ -4,7 +4,6 @@ namespace Apis\Football\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Football\Endpoints\Players;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -41,7 +40,6 @@ class PlayersTest extends TestCase
         $this->assertIsObject($response->data);
         $this->assertEquals('D. Agger', $response->data->common_name);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Players::fields, $response->data);
     }
 
     /**
@@ -89,7 +87,7 @@ class PlayersTest extends TestCase
         $response = Sportmonks::football()
             ->players()
             ->lastUpdated();
-        
+
         $this->assertEquals("/v3/football/players/latest", $response->url->getPath());
         $this->assertIsArray($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);

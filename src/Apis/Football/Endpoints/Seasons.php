@@ -7,20 +7,6 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class Seasons extends FootballClient
 {
-    const array fields = [
-        'id',
-        'sport_id',
-        'league_id',
-        'tie_breaker_rule_id',
-        'name',
-        'finished',
-        'pending',
-        'is_current',
-        'standing_method',
-        'starting_at',
-        'ending_at',
-    ];
-
     /**
      * @param array $query
      * @return object

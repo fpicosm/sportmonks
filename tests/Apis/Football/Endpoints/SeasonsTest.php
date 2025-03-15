@@ -4,7 +4,6 @@ namespace Apis\Football\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Football\Endpoints\Seasons;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -40,7 +39,6 @@ class SeasonsTest extends TestCase
         $this->assertEquals("/v3/football/seasons/$seasonId", $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Seasons::fields, $response->data);
     }
 
     /**

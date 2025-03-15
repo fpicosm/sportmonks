@@ -7,13 +7,6 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class Predictions extends FootballClient
 {
-    const array fields = [
-        'id',
-        'league_id',
-        'type_id',
-        'data',
-    ];
-
     /**
      * @param array $query
      * @return object

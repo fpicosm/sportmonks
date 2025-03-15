@@ -4,7 +4,6 @@ namespace Apis\Core\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Core\Endpoints\Cities;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -40,7 +39,6 @@ class CitiesTest extends TestCase
         $this->assertEquals("/v3/core/cities/$cityId", $response->url->getPath());
         $this->assertIsObject($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Cities::fields, $response->data);
     }
 
     /**

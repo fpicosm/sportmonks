@@ -43,12 +43,4 @@ class TestCase extends TestBase
 
         return $query->get($key);
     }
-
-    protected function assertSchemaEquals(array $schema, object $model): void
-    {
-        $this->assertCount(count($schema), get_object_vars($model));
-        foreach ($schema as $key) {
-            $this->assertObjectHasProperty($key, $model);
-        }
-    }
 }

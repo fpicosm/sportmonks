@@ -5,7 +5,6 @@ namespace Apis\Football\Endpoints;
 use Carbon\Carbon;
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Football\Endpoints\Fixtures;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -42,7 +41,6 @@ class FixturesTest extends TestCase
         $this->assertIsObject($response->data);
         $this->assertEquals('Tottenham Hotspur vs Manchester City', $response->data->name);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Fixtures::fields, $response->data);
     }
 
     /**

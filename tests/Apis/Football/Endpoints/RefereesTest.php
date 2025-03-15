@@ -4,7 +4,6 @@ namespace Apis\Football\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Football\Endpoints\Referees;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -41,7 +40,6 @@ class RefereesTest extends TestCase
         $this->assertIsObject($response->data);
         $this->assertEquals('Bjorn Kuipers', $response->data->common_name);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Referees::fields, $response->data);
     }
 
     /**

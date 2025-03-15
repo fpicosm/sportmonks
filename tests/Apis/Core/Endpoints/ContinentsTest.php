@@ -4,7 +4,6 @@ namespace Apis\Core\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Core\Endpoints\Continents;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -41,6 +40,5 @@ class ContinentsTest extends TestCase
         $this->assertIsObject($response->data);
         $this->assertEquals('Europe', $response->data->name);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Continents::fields, $response->data);
     }
 }

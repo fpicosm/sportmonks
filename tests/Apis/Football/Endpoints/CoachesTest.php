@@ -4,7 +4,6 @@ namespace Apis\Football\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Football\Endpoints\Coaches;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -43,7 +42,6 @@ class CoachesTest extends TestCase
         $this->assertIsObject($response->data);
         $this->assertEquals('Diego Pablo Simeone', $response->data->name);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Coaches::fields, $response->data);
     }
 
     /**

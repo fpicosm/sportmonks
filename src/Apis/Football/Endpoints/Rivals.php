@@ -7,12 +7,6 @@ use Sportmonks\Apis\Football\FootballClient;
 
 class Rivals extends FootballClient
 {
-    const array fields = [
-        'sport_id',
-        'team_id',
-        'rival_id',
-    ];
-
     /**
      * @param array $query
      * @return object

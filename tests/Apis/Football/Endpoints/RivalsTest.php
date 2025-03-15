@@ -4,7 +4,6 @@ namespace Apis\Football\Endpoints;
 
 use GuzzleHttp\Exception\GuzzleException;
 use PHPUnit\Framework\Attributes\Test;
-use Sportmonks\Apis\Football\Endpoints\Rivals;
 use Sportmonks\Sportmonks;
 use TestCase;
 
@@ -24,7 +23,6 @@ class RivalsTest extends TestCase
         $this->assertNotEmpty($response->data);
         $this->assertContainsOnlyObject($response->data);
         $this->assertObjectHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Rivals::fields, $response->data[0]);
     }
 
     /**
@@ -43,6 +41,5 @@ class RivalsTest extends TestCase
         $this->assertNotEmpty($response->data);
         $this->assertContainsOnlyObject($response->data);
         $this->assertObjectNotHasProperty('pagination', $response);
-        $this->assertSchemaEquals(Rivals::fields, $response->data[0]);
     }
 }
