@@ -121,7 +121,7 @@ class CricketClient extends TestCase
     /**
      * @throws GuzzleException
      */
-    #[Test] public function set_sort_option_test(): void
+    #[Test] public function sort_by_option_test(): void
     {
         $response = Sportmonks::cricket()
             ->countries()

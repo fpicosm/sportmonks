@@ -1035,6 +1035,98 @@ Sportmonks::my()->usage();
 
 ### Basic usage
 
+#### The `setInclude` option
+
+```php
+Sportmonks::cricket()
+    ->leagues()
+    ->setInclude('seasons', 'country')
+    ->all();
+```
+
+```php
+Sportmonks::cricket()
+    ->leagues()
+    ->setInclude(['seasons', 'country'])
+    ->all();
+```
+
+```php
+Sportmonks::cricket()
+    ->leagues()
+    ->setInclude('seasons,country')
+    ->all();
+```
+
+#### The `setFields` option
+
+```php
+Sportmonks::cricket()
+    ->leagues()
+    ->setFields('name', 'code')
+    ->all();
+```
+
+```php
+Sportmonks::cricket()
+    ->leagues()
+    ->setFields(['name', 'code'])
+    ->all();
+```
+
+```php
+Sportmonks::cricket()
+    ->leagues()
+    ->setFields('name,code')
+    ->all();
+```
+
+#### The `setFilters` option
+
+```php
+Sportmonks::cricket()
+    ->countries()
+    ->setFilters(['continent_id' => 1])
+    ->all();
+```
+
+```php
+Sportmonks::cricket()
+    ->countries()
+    ->setFilters(['continent_id' => 1, 'name' => 'Spain'])
+    ->all();
+```
+
+#### The `sortBy` option
+
+```php
+Sportmonks::cricket()
+    ->countries()
+    ->sortBy('name')
+    ->all();
+```
+
+```php
+Sportmonks::cricket()
+    ->countries()
+    ->sortBy('continent_id', 'name')
+    ->all();
+```
+
+```php
+Sportmonks::cricket()
+    ->countries()
+    ->sortBy(['continent_id', 'name'])
+    ->all();
+```
+
+```php
+Sportmonks::cricket()
+    ->countries()
+    ->sortBy('continent_id,name')
+    ->all();
+```
+
 ### Endpoints
 
 #### Continents
@@ -1210,4 +1302,143 @@ Sportmonks::cricket()->scores()->all();
 ```php
 // get by id 
 Sportmonks::cricket()->scores()->find($scoreId);
+```
+
+## Formula One API
+
+### Basic usage
+
+#### The `setInclude` option
+
+```php
+Sportmonks::f1()
+    ->tracks()
+    ->setInclude('seasons', 'currentStage')
+    ->all();
+```
+
+```php
+Sportmonks::f1()
+    ->tracks()
+    ->setInclude(['seasons', 'currentStage'])
+    ->all();
+```
+
+```php
+Sportmonks::f1()
+    ->tracks()
+    ->setInclude('seasons,currentStage')
+    ->all();
+```
+
+#### The `setFilters` option
+
+```php
+Sportmonks::f1()
+    ->seasons()
+    ->setFilters(['name' => 2022])
+    ->all();
+```
+
+#### The `sortBy` option
+
+```php
+Sportmonks::f1()
+    ->seasons()
+    ->sortBy('name')
+    ->all();
+```
+
+### Endpoints
+
+#### Livescores
+
+```php
+// get livescores
+Sportmonks::f1()->livescores()->all();
+```
+
+#### Seasons
+
+```php
+// get all seasons
+Sportmonks::f1()->seasons()->all();
+```
+
+```php
+// get season by id
+Sportmonks::f1()->seasons()->find($seasonId);
+```
+
+#### Tracks
+
+```php
+// get all tracks
+Sportmonks::f1()->tracks()->all();
+```
+
+```php
+// get track by id
+Sportmonks::f1()->tracks()->find($trackId);
+```
+
+```php
+// get tracks by season id
+Sportmonks::f1()->tracks()->bySeason($seasonId);
+```
+
+```php
+// get track winners by season id
+Sportmonks::f1()->tracks()->winnersBySeason($seasonId);
+```
+
+#### Stages
+
+```php
+// get all stages
+Sportmonks::f1()->stages()->all();
+```
+
+```php
+// get stage by id
+Sportmonks::f1()->stages()->find($stageId);
+```
+
+```php
+// get stages by season id
+Sportmonks::f1()->stages()->bySeason($seasonId);
+```
+
+#### Teams
+
+```php
+// get team by id
+Sportmonks::f1()->teams()->find($teamId);
+```
+
+```php
+// get teams by season id
+Sportmonks::f1()->teams()->bySeason($seasonId);
+```
+
+```php
+// get team results by season id
+Sportmonks::f1()->teams()->resultsBySeason($teamId, $seasonId);
+```
+
+#### Drivers
+
+```php
+// get driver by id
+Sportmonks::f1()->drivers()->find($driverId);
+```
+
+```php
+// get drivers by season id
+Sportmonks::f1()->drivers()->bySeason($seasonId);
+```
+
+```php
+// get driver results by season id
+Sportmonks::f1()->drivers()->resultsBySeason($driverId, $seasonId);
 ```
