@@ -256,10 +256,12 @@ class SportmonksV3Client extends TestCase
             ->setFilters(['Deleted'])
             ->all();
 
+        $this->assertEquals(200, $response->statusCode);
         foreach ($response->data as $fixture) {
             $this->assertEquals('Deleted', $fixture->state->name);
         }
 
+        // Both with and without values
         $response = Sportmonks::football()
             ->fixtures()
             ->setFilters([
@@ -267,7 +269,6 @@ class SportmonksV3Client extends TestCase
                 'todayDate',
             ])
             ->all();
-
-        dd($response->data);
+        $this->assertEquals(200, $response->statusCode);
     }
 }

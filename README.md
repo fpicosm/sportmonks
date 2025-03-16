@@ -1030,3 +1030,184 @@ Sportmonks::my()->leagues();
 // get my usage
 Sportmonks::my()->usage();
 ```
+
+## Cricket API
+
+### Basic usage
+
+### Endpoints
+
+#### Continents
+
+```php
+// get all continents
+Sportmonks::cricket()->continents()->all();
+```
+
+```php
+// get continent by id
+Sportmonks::cricket()->continents()->all();
+```
+
+#### Countries
+
+```php
+// get all 
+Sportmonks::cricket()->countries()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->countries()->find($countryId);
+```
+
+#### Leagues
+
+```php
+// get all 
+Sportmonks::cricket()->leagues()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->leagues()->find($leagueId);
+```
+
+#### Seasons
+
+```php
+// get all 
+Sportmonks::cricket()->seasons()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->seasons()->find($seasonId);
+```
+
+#### Fixtures
+
+```php
+// get all 
+Sportmonks::cricket()->fixtures()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->fixtures()->find($fixtureId);
+```
+
+#### Livescores
+
+```php
+// get all 
+Sportmonks::cricket()->livescores()->all();
+```
+
+#### Teams
+
+```php
+// get all 
+Sportmonks::cricket()->teams()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->teams()->find($teamId);
+```
+
+```php
+// get squad by team and season id
+Sportmonks::cricket()->teams()->squadBySeason($teamId, $seasonId); 
+```
+
+#### Players
+
+```php
+// get all 
+Sportmonks::cricket()->players()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->players()->find($playerId);
+```
+
+#### Officials
+
+```php
+// get all 
+Sportmonks::cricket()->officials()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->officials()->find($officialId);
+```
+
+#### Venues
+
+```php
+// get all 
+Sportmonks::cricket()->venues()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->venues()->find($venueId);
+```
+
+#### Positions
+
+```php
+// get all 
+Sportmonks::cricket()->positions()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->positions()->find($positionId);
+```
+
+#### Stages
+
+```php
+// get all 
+Sportmonks::cricket()->stages()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->stages()->find($stageId);
+```
+
+#### Team Rankings
+
+```php
+// get all
+Sportmonks::cricket()->teamRankings()->global(); 
+```
+
+#### Standings
+
+```php
+// get standings by season id
+Sportmonks::cricket()->standings()->bySeason(); 
+```
+
+```php
+// get standings by stage id 
+Sportmonks::cricket()->standings()->byStage();
+```
+
+#### Scores
+
+```php
+// get all scores
+Sportmonks::cricket()->scores()->all();
+```
+
+```php
+// get by id 
+Sportmonks::cricket()->scores()->find($scoreId);
+```

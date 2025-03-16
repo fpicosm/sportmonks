@@ -6,13 +6,13 @@ use InvalidArgumentException;
 
 class SportmonksV3Client extends BaseClient
 {
-    protected array $include = [];
-    protected array $select = [];
-    protected array $filters = [];
-    protected ?int $page = null;
-    protected ?int $pageSize = null;
-    protected ?string $sortBy = null;
-    protected ?string $sortOrder = null;
+    private array $include = [];
+    private array $select = [];
+    private array $filters = [];
+    private ?int $page = null;
+    private ?int $pageSize = null;
+    private ?string $sortBy = null;
+    private ?string $sortOrder = null;
 
     public function setInclude(...$relations): self
     {
