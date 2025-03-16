@@ -58,6 +58,15 @@ Sportmonks::football()
     ->find(8);
 ```
 
+or an array too
+
+```php
+Sportmonks::football()
+    ->leagues()
+    ->setInclude(['country', 'sport'])
+    ->find(8);
+```
+
 Produces the response:
 
 ```json
